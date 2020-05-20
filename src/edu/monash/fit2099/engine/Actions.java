@@ -11,7 +11,7 @@ import java.util.List;
  *
  */
 public class Actions implements Iterable<Action> {
-	private ArrayList<Action> actions = new ArrayList<Action>();
+	public ArrayList<Action> actions = new ArrayList<Action>();
 
 	/**
 	 * Constructs an empty list.

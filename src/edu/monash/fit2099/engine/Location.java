@@ -27,7 +27,7 @@ public class Location implements Printable {
 	 * @param y y coordinate of this location within the map
 	 */
 	public Location(GameMap map, int x, int y) {
-		this.map = map;
+		this.setMap(map);
 		this.x = x;
 		this.y = y;
 	}
@@ -38,7 +38,7 @@ public class Location implements Printable {
 	 * @return the map that contains this Location
 	 */
 	public GameMap map() {
-		return map;
+		return getMap();
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class Location implements Printable {
 	 * @return true if and only if there is an Actor at this location.
 	 */
 	public boolean containsAnActor() {
-		return map.isAnActorAt(this);
+		return getMap().isAnActorAt(this);
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class Location implements Printable {
 	 * @return the Actor at this location, if there is one
 	 */
 	public Actor getActor() {
-		return map.getActorAt(this);
+		return getMap().getActorAt(this);
 	}
 	
 	/**
@@ -143,7 +143,7 @@ public class Location implements Printable {
 	 */
 	public void addActor(Actor actor) {
 		Objects.requireNonNull(actor);
-		map.addActor(actor, this);
+		getMap().addActor(actor, this);
 	}
 	
 	
@@ -171,7 +171,7 @@ public class Location implements Printable {
 	 * @return true if the Actor can enter this location
 	 */
 	public boolean canActorEnter(Actor actor) {
-		return !map.isAnActorAt(this) && ground.canActorEnter(actor);
+		return !getMap().isAnActorAt(this) && ground.canActorEnter(actor);
 	}
 
 	/**
@@ -215,7 +215,7 @@ public class Location implements Printable {
 
 		Location that = (Location) obj;
 
-		return this.map == that.map && this.y() == that.y() && this.x() == that.x();
+		return this.getMap() == that.getMap() && this.y() == that.y() && this.x() == that.x();
 	}
 
 	/**
@@ -224,7 +224,7 @@ public class Location implements Printable {
 	 */
 	@Override
 	public int hashCode() {
-		return map.hashCode() ^ y() << 16 ^ x();
+		return getMap().hashCode() ^ y() << 16 ^ x();
 	}
 
 	/**
@@ -254,5 +254,13 @@ public class Location implements Printable {
 	 */
 	public void removeExit(Exit exit) {
 		exits.remove(exit);
+	}
+
+	public GameMap getMap() {
+		return map;
+	}
+
+	public void setMap(GameMap map) {
+		this.map = map;
 	}
 }

@@ -11,7 +11,7 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 	private Capabilities capabilities = new Capabilities();
 	protected String name;
 	protected char displayChar;
-	protected List<Item> inventory = new ArrayList<Item>();
+	protected static List<Item> inventory = new ArrayList<Item>();
 	protected int maxHitPoints;
 	protected int hitPoints;
 
@@ -42,7 +42,7 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 	 * Add an item to this Actor's inventory.
 	 * @param item The Item to add.
 	 */
-	public void addItemToInventory(Item item) {
+	public static void addItemToInventory(Item item) {
 		inventory.add(item);
 	}
 
