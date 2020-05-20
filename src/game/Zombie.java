@@ -23,11 +23,11 @@ public class Zombie extends ZombieActor {
 			new HuntBehaviour(Human.class, 10),
 			new WanderBehaviour()
 	};
+	private String ZombieNoise[] =  {"braaaaaaaains", "blooooooood", "*spooky laughter*"};
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
 	}
-	
 
 	@Override
 	public IntrinsicWeapon getIntrinsicWeapon() {
@@ -51,6 +51,12 @@ public class Zombie extends ZombieActor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		int randInt = new Random().nextInt(10);
+		if (randInt == 1) {
+			int randInt2 = new Random().nextInt(ZombieNoise.length - 1);
+			System.out.println(ZombieNoise[randInt2]);
+		}
+		
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
 			if (action != null)
