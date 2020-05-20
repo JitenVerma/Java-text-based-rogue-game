@@ -33,10 +33,10 @@ public class Zombie extends ZombieActor {
 	public IntrinsicWeapon getIntrinsicWeapon() {
 		int randInt = new Random().nextInt(10);
 		if (randInt < 5) {
-			return new Punch("punches", 10, 0, 50);
+			return new Punch(10, "Punches");
 		}
 		else {
-			return new Bite("Bite", 15, 5, 50);
+			return new Bite(15, "Bite");
 		}
 	}
 

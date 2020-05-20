@@ -11,20 +11,8 @@ import edu.monash.fit2099.engine.Weapon;
  *
  */
 public class Punch extends IntrinsicWeapon implements Weapon{
-	protected int heal;
-	protected int accuracy;
 	
-	public Punch(String verb, int damage, int heal, int accuracy) {
+	public Punch(int damage, String verb) {
 		super(damage, verb);
-		this.heal = heal;
-		this.accuracy = accuracy;
-	}
-	
-	public int heal() {
-		return heal;
-	}
-	
-	public int accuracy() {
-		return accuracy;
 	}
 }
