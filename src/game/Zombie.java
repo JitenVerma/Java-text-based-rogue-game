@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
+import edu.monash.fit2099.engine.PickUpItemAction;
 
 /**
  * A Zombie.
@@ -56,6 +57,7 @@ public class Zombie extends ZombieActor {
 			int randInt2 = new Random().nextInt(ZombieNoise.length - 1);
 			System.out.println(ZombieNoise[randInt2]);
 		}
+		pickUpWeapons(actions, map);
 		
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
@@ -63,5 +65,13 @@ public class Zombie extends ZombieActor {
 				return action;
 		}
 		return new DoNothingAction();	
+	}
+	
+	public void pickUpWeapons(Actions actions, GameMap map) {
+		for(Action action: actions) {
+			if (action instanceof PickUpItemAction) {
+				System.out.println(action.execute(this,  map));
+			}
+		}
 	}
 }
