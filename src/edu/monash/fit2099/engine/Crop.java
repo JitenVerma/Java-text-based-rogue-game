@@ -8,9 +8,14 @@ public class Crop extends Item {
 		this.turns = turns;
 		// TODO Auto-generated constructor stub
 	}
+	//keeps tracks of turns
 	@Override
 	public void tick(Location currentLocation) {
-		this.setTurns(this.getTurns() - 1);
+		//if turns is not 0 then decrease by 1 at each turn
+		if(this.turns != 0) {
+			this.setTurns(this.getTurns() - 1);
+		}
+		
 	}
 	public int getTurns() {
 		return turns;

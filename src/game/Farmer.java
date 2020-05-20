@@ -24,35 +24,46 @@ public class Farmer extends Human {
 		super(name, 'F', 50);
 	}
 	public void sow(Location currentLocation) {
+		//store possible locations in arraylist, if it doesnt have character dirt then remove x and y coordinates and place unripe crop at first x and y coordinate
 		int x = currentLocation.x();//lets x,y coordinate of farmer
 		int y = currentLocation.y();
 		GameMap map = currentLocation.getMap();
 		Integer[] otherList = new Integer[] {x, y+1, x-1, y, x+1, y, x, y+1, x+1, y+1, x-1, y-1};//stores possible locations in arraylist
 		possiblelocation.addAll(Arrays.asList(otherList));
-		for(int i = 0; i < possiblelocation.size(); i++) { //if a location doesnt have dirt then remove it from possible locations
-			if (map.at(possiblelocation.get(i), possiblelocation.get(i + 1)).getDisplayChar() != dirt) {
+		for(int i = 1; i < possiblelocation.size(); i++) { //if a location doesnt have dirt then remove it from possible locations
+			if (map.at(possiblelocation.get(i-1), possiblelocation.get(i)).getDisplayChar() != dirt) {
+				possiblelocation.remove(i-1);
 				possiblelocation.remove(i);
-				possiblelocation.remove(i + 1);
 			}
 		}
 		Crop newcrop = new Crop("unripe",'U',true,20);
-		map.at(possiblelocation.get(0),possiblelocation.get(1)).addItem(newcrop);
+		//place newcrop if there are possible locations
+		if(possiblelocation.size() > 1) {
+			map.at(possiblelocation.get(0),possiblelocation.get(1)).addItem(newcrop);
+		}
+		Location unripecroplocation = new Location(map,possiblelocation.get(1),possiblelocation.get(0));
+		//if turns are 0 then call ripeCrop method which ripes crop
+		if(newcrop.getTurns() == 0) {
+			ripeCrop(unripecroplocation, newcrop);
+		}
 	}
 	public void ripeCrop(Location currentLocation, Crop unripe) {
-		if (unripe.getTurns() == 0) {
-			currentLocation.removeItem(unripe);
-			Crop ripe = new Crop("ripe",'R',true,0);
-			currentLocation.addItem(ripe);
-		}
+		//removes unripe crop and places
+		currentLocation.removeItem(unripe);
+		Crop ripe = new Crop("ripe",'R',true,0);
+		currentLocation.addItem(ripe);
+		
 	}
 
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		for(int i = 0;i < actions.actions.size();i++) {
-			if (FertiliseNewAction.class.isInstance(actions.actions.get(i)))
+		//checks all actions, checks if there is object of FertiliseNewAction, if yes then returned
+		for(int i = 0;i < actions.actions.size();i++) { //not sure how to add location part
+			if (FertiliseNewAction.class.isInstance(actions.actions.get(i))) {
 				return actions.actions.get(i);
-			else if (FertiliseNewAction.class.isInstance(lastAction) && HarvestAction.class.isInstance(actions.actions.get(i))) {
+			}
+			else if (HarvestAction.class.isInstance(actions.actions.get(i))) {
 				return actions.actions.get(i);
 			}
 			
