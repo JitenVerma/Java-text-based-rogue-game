@@ -1,7 +1,9 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
@@ -64,7 +66,20 @@ public class Application {
 			while (gameMap.at(x, y).containsAnActor());
 			gameMap.at(x,  y).addActor(new Human(name));	
 		}
-		
+		//place a farmer
+		String[] farmernames = {"Fred","Fed","Mays","Mayson"};
+		ArrayList<Farmer> farmers = new ArrayList<Farmer>();
+		int fx, fy;
+		for (String name : farmernames) {
+			do {
+				fx = (int) Math.floor(Math.random() * 20.0 + 30.0);
+				fy = (int) Math.floor(Math.random() * 7.0 + 5.0);
+			} 
+			while (gameMap.at(fx, fy).containsAnActor());
+			farmers.add(new Farmer(name));
+			gameMap.at(fx,  fy).addActor(new Farmer(name));	
+		}
+
 		// place a simple weapon
 		gameMap.at(74, 20).addItem(new Plank());
 		gameMap.at(50, 20).addItem(new Plank());

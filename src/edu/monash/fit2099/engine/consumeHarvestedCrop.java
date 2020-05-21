@@ -20,7 +20,7 @@ public class consumeHarvestedCrop extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		//checks if food is in humans,players inventory if it is then call heal method and remove food from inventory
-		if (actor.name == "Player" || actor.name == "Human") {
+		if (actor.displayChar == 'H' || actor.displayChar == 'P') {
 			List<Item> inventory = Actor.inventory;
 			for (int i = 0;i < inventory.size();i++) {
 				if(Food.class.isInstance(inventory.get(i)));

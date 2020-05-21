@@ -3,7 +3,10 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.FertiliseNewAction;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.HarvestAction;
+import edu.monash.fit2099.engine.consumeHarvestedCrop;
 
 /**
  * Class representing an ordinary human.
@@ -38,7 +41,11 @@ public class Human extends ZombieActor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// FIXME humans are pretty dumb, maybe they should at least run away from zombies?
-		
+		for(int i = 0;i < actions.actions.size();i++) {
+			if (consumeHarvestedCrop.class.isInstance(actions.actions.get(i)) || HarvestAction.class.isInstance(actions.actions.get(i))) {
+				return actions.actions.get(i);
+			}
+		}
 		return behaviour.getAction(this, map);
 	}
 

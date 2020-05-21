@@ -19,12 +19,12 @@ public class HarvestAction extends Action {
 	public String execute(Actor actor, GameMap map) {
 		//Get location of actor as for harvesting crop and player are in same location, remove ripe crop and add object of food.\
 		Food newfood = new Food("food",'F',true);
-		if (actor.name == "Farmer") {
+		if (actor.displayChar == 'F') {
 			Location currentlocation = map.locationOf(actor);
 			currentlocation.removeItem(this.ripecrop);
 			currentlocation.addItem(newfood);
 		}
-		if (actor.name == "Player" || actor.name == "Human") {
+		if (actor.displayChar == 'H' || actor.displayChar == 'P') {
 			//if actor is player and human then add food to inventory
 			Location currentlocation = map.locationOf(actor);
 			currentlocation.removeItem(this.ripecrop);

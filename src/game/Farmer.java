@@ -14,14 +14,16 @@ import edu.monash.fit2099.engine.FertiliseNewAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.HarvestAction;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.sowAction;
 
 public class Farmer extends Human {
 	//private int value = (int) (Math.random()*101);,find probability if in range then sow
 	private Behaviour behaviour = new WanderBehaviour();
 	private char dirt = '.'; 
 	private ArrayList<Integer> possiblelocation = new ArrayList<Integer>(); //An array which has possible locations of sowing crop
-	public Farmer(String name,char displayChar, int hitPoints) {
+	public Farmer(String name) {
 		super(name, 'F', 50);
+		
 	}
 	public void sow(Location currentLocation) {
 		//store possible locations in arraylist, if it doesnt have character dirt then remove x and y coordinates and place unripe crop at first x and y coordinate
@@ -60,12 +62,10 @@ public class Farmer extends Human {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		//checks all actions, checks if there is object of FertiliseNewAction, if yes then returned
 		for(int i = 0;i < actions.actions.size();i++) { //not sure how to add location part
-			if (FertiliseNewAction.class.isInstance(actions.actions.get(i))) {
+			if (FertiliseNewAction.class.isInstance(actions.actions.get(i)) || HarvestAction.class.isInstance(actions.actions.get(i)) || sowAction.class.isInstance(actions.actions.get(i))) {
 				return actions.actions.get(i);
 			}
-			else if (HarvestAction.class.isInstance(actions.actions.get(i))) {
-				return actions.actions.get(i);
-			}
+
 			
 		}
 		return new DoNothingAction();	
