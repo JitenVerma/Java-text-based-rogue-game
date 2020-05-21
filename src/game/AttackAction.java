@@ -38,13 +38,20 @@ public class AttackAction extends Action {
 		Weapon weapon = actor.getWeapon();
 		String result = "";
 		
-		if (rand.nextBoolean()) {
+		String verb = weapon.verb();
+		if (verb == "Bite") {
+			int randInt = new Random().nextInt(10);
+			if (randInt > 3) {
+				return actor + " misses " + target + ".";
+			}
+		}
+		else if (rand.nextBoolean()) {
 			return actor + " misses " + target + ".";
 		}
 		
 
 		int damage = weapon.damage();
-		String verb = weapon.verb();
+		
 		
 		result = result + actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		
