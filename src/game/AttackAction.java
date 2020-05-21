@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
@@ -58,10 +59,24 @@ public class AttackAction extends Action {
 		if (verb == "Bite") {
 			int heal = 5;
 			actor.heal(heal);
-			result = result + "\n" + actor + " has replenished " + heal + " hitpoints";
+			result = result + System.lineSeparator() + actor + " has replenished " + heal + " hitpoints";
 		}
 
 		target.hurt(damage);
+		//When hurting zombies
+		if (target.getDisplayChar() == 'Z') {
+			target.hurt(damage);
+			Zombie zombie = (Zombie)target;
+			ArrayList<String> limbsDropped = zombie.tryToDropLimbs(map);
+			if (limbsDropped.size() != 0) {
+				String message = target + " has dropped: ";
+				message += limbsDropped.get(0);
+				for (int i = 1; i < limbsDropped.size(); i++) {
+					message += ", " + limbsDropped.get(i);
+				}
+				result += System.lineSeparator() + message;
+			}
+		}
 		
 		if (!target.isConscious()) {
 			Item corpse = new PortableItem("dead " + target, '%');

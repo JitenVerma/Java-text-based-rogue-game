@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
@@ -25,9 +26,15 @@ public class Zombie extends ZombieActor {
 			new WanderBehaviour()
 	};
 	private String ZombieNoise[] =  {"braaaaaaaains", "blooooooood", "*spooky laughter*"};
+	private int arms;
+	private int legs;
+	private int minLimbs;
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
+		this.arms = 2;
+		this.legs = 2;
+		this.minLimbs = 0;
 	}
 
 	@Override
@@ -72,6 +79,104 @@ public class Zombie extends ZombieActor {
 			if (action instanceof PickUpItemAction) {
 				System.out.println(action.execute(this,  map));
 			}
+		}
+	}
+
+	public ArrayList<String> tryToDropLimbs(GameMap map) {
+		//Stores all the dropped limbs
+		ArrayList<String> limbsDropped = new ArrayList<String>();
+		
+		//If the zombie has no arms and legs then just return as they cannot drop any more
+		if (this.arms == this.minLimbs && this.legs == this.minLimbs) {
+			return limbsDropped;
+		}
+		
+		//25% chance when zombie gets hurt he will drop some limbs
+		int randInt = new Random().nextInt(100);
+		if (randInt < 25) {
+			int totalLimbs = this.arms + this.legs;
+			
+			//Integer to determine how many limbs need to be dropped
+			int randInt2 = new Random().nextInt(20);
+			
+			//Drop 1 limb
+			if (randInt2 < 10) {
+				limbsDropped = dropLimbs(limbsDropped, map);
+			}
+			//Drop 2 limbs
+			else if (randInt2 < 17) {
+				if (totalLimbs < 2) {
+					for (int i = 0; i < totalLimbs; i++) {
+						limbsDropped = dropLimbs(limbsDropped, map);
+					}
+				}
+				else {
+					for (int i = 0; i < 2; i++) {
+						limbsDropped = dropLimbs(limbsDropped, map);
+					}
+				}
+			}
+			//Drop 3 limbs
+			else if (randInt2 < 19) {
+				if (totalLimbs < 3) {
+					for (int i = 0; i < totalLimbs; i++) {
+						limbsDropped = dropLimbs(limbsDropped, map);
+					}
+				}
+				else {
+					for (int i = 0; i < 3; i++) {
+						limbsDropped = dropLimbs(limbsDropped, map);
+					}
+				}
+			}
+			//Drop all 4 limbs
+			else if (randInt2 == 19) {
+				if (totalLimbs < 4) {
+					for (int i = 0; i < totalLimbs; i++) {
+						limbsDropped = dropLimbs(limbsDropped, map);
+					}
+				}
+				else {
+					for (int i = 0; i < 4; i++) {
+						limbsDropped = dropLimbs(limbsDropped, map);
+					}
+				}
+			}
+		}
+		return limbsDropped;
+	}
+	
+	public ArrayList<String> dropLimbs(ArrayList<String> limbsDropped, GameMap map) {
+		if (this.arms != 0 && this.legs != 0) {
+			boolean randBoolean = new Random().nextBoolean();
+			if (randBoolean) {
+				loseArm(map);
+				limbsDropped.add("an arm");
+			} else {
+				loseLeg(map);
+				limbsDropped.add("a leg");
+			}
+		} else if (this.arms == this.minLimbs) {
+			loseLeg(map);
+			limbsDropped.add("a leg");
+		} else if (this.legs == this.minLimbs) {
+			loseArm(map);
+			limbsDropped.add("an arm");
+		}
+		return limbsDropped;
+	}
+	
+	public void loseArm(GameMap map) {
+		this.arms -= 1;
+		if (this.arms < this.minLimbs) {
+			this.arms = this.minLimbs;
+		}
+	}
+	
+	public void loseLeg(GameMap map) {
+		this.legs -= 1;
+		if (this.legs < minLimbs) {
+			this.legs = this.minLimbs;
 		}
 	}
 }
