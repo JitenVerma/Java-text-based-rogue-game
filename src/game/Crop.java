@@ -1,6 +1,9 @@
-package edu.monash.fit2099.engine;
+package game;
 
 import java.util.List;
+
+import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 public class Crop extends Item {
 	private int turns;
 	public Crop(String name, char displayChar, boolean portable,Integer turns) {

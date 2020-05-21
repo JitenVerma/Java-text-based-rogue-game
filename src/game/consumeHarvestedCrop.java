@@ -1,7 +1,11 @@
-package edu.monash.fit2099.engine;
+package game;
+
 
 import java.util.List;
 
+import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.GameMap;
 import game.Behaviour;
 import game.Human;
 import game.Player;
@@ -20,7 +24,7 @@ public class consumeHarvestedCrop extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		//checks if food is in humans,players inventory if it is then call heal method and remove food from inventory
-		if (actor.displayChar == 'H' || actor.displayChar == 'P') {
+		if (actor.displayChar == 'H' || actor.getDisplayChar() == 'P') {
 			List<Item> inventory = Actor.inventory;
 			for (int i = 0;i < inventory.size();i++) {
 				if(Food.class.isInstance(inventory.get(i)));
@@ -41,6 +45,18 @@ public class consumeHarvestedCrop extends Action {
 	public String menuDescription(Actor actor) {
 		// TODO Auto-generated method stub
 		return actor.name + "healed";
+	}
+
+	@Override
+	public String execute(Actor actor, GameMap map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String menuDescription(Actor actor) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -7,14 +7,11 @@ import java.lang.*;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Crop;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
-import edu.monash.fit2099.engine.FertiliseNewAction;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.HarvestAction;
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.engine.sowAction;
+
 
 public class Farmer extends Human {
 	//private int value = (int) (Math.random()*101);,find probability if in range then sow
@@ -62,8 +59,15 @@ public class Farmer extends Human {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		//checks all actions, checks if there is object of FertiliseNewAction, if yes then returned
 		for(int i = 0;i < actions.actions.size();i++) { //not sure how to add location part
-			if (FertiliseNewAction.class.isInstance(actions.actions.get(i)) || HarvestAction.class.isInstance(actions.actions.get(i)) || sowAction.class.isInstance(actions.actions.get(i))) {
+			if (FertiliseNewAction.class.isInstance(actions.actions.get(i)) && sowAction.class.isInstance(lastAction)) {
 				return actions.actions.get(i);
+			}
+			else if (HarvestAction.class.isInstance(actions.actions.get(i)) && FertiliseNewAction.class.isInstance(lastAction)){
+				return actions.actions.get(i);
+			}
+			else if (sowAction.class.isInstance(actions.actions.get(i))) {
+				return actions.actions.get(i);
+
 			}
 
 			

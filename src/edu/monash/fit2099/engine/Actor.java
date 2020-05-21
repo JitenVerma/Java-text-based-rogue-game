@@ -10,8 +10,8 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 
 	private Capabilities capabilities = new Capabilities();
 	protected String name;
-	protected char displayChar;
-	protected static List<Item> inventory = new ArrayList<Item>();
+	public char displayChar;
+	public static List<Item> inventory = new ArrayList<Item>();
 	protected int maxHitPoints;
 	protected int hitPoints;
 
