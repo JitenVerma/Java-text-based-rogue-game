@@ -1,7 +1,9 @@
-package edu.monash.fit2099.engine;
+package game;
 
 import java.util.Random;
 
+import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.GameMap;
 import game.Farmer;
 
 public abstract class sowAction extends Action {
