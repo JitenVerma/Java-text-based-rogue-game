@@ -6,6 +6,7 @@ import java.util.List;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 import game.Behaviour;
 import game.Human;
 import game.Player;
@@ -47,16 +48,6 @@ public class consumeHarvestedCrop extends Action {
 		return actor.name + "healed";
 	}
 
-	@Override
-	public String execute(Actor actor, GameMap map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public String menuDescription(Actor actor) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
