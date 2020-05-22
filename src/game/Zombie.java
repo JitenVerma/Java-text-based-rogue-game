@@ -81,6 +81,7 @@ public class Zombie extends ZombieActor {
 		return new DoNothingAction();	
 	}
 	
+	
 	//Method for picking up weapons
 	public void pickUpWeapons(Actions actions, GameMap map) {
 		for(Action action: actions) {
