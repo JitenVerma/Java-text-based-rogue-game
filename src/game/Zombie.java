@@ -12,6 +12,7 @@ import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.PickUpItemAction;
 import edu.monash.fit2099.engine.Weapon;
 
@@ -54,6 +55,7 @@ public class Zombie extends ZombieActor {
 		}
 	}
 
+	
 	/**
 	 * If a Zombie can attack, it will.  If not, it will chase any human within 10 spaces.  
 	 * If no humans are close enough it will wander randomly.
@@ -65,18 +67,41 @@ public class Zombie extends ZombieActor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		//Zombie makes random noise
 		//randInt
 		int randInt = new Random().nextInt(10);
 		if (randInt == 1) {
 			int randInt2 = new Random().nextInt(ZombieNoise.length - 1);
 			System.out.println(ZombieNoise[randInt2]);
 		}
+		//Zombie picks up items and weapons he is standing near
 		pickUpWeapons(actions, map);
 		
+		//Restrict zombie movements if he is crippled
+		if (this.legs == 1) {
+			if (this.canMove) {
+				this.canMove = false;
+			}
+			else {
+				this.canMove = true;
+			}
+		}
+		
 		for (Behaviour behaviour : behaviours) {
-			Action action = behaviour.getAction(this, map);
-			if (action != null)
-				return action;
+			if (this.canMove) {
+				Action action = behaviour.getAction(this, map);
+				if (action != null)
+					return action;
+			}
+			else if (this.canMove == false) {
+				if(!(behaviour instanceof WanderBehaviour)) {
+					if(!(behaviour instanceof HuntBehaviour)) {
+						Action action = behaviour.getAction(this, map);
+						if (action != null)
+							return action;
+					}
+				}
+			}
 		}
 		return new DoNothingAction();	
 	}
@@ -86,7 +111,7 @@ public class Zombie extends ZombieActor {
 	public void pickUpWeapons(Actions actions, GameMap map) {
 		for(Action action: actions) {
 			if (action instanceof PickUpItemAction) {
-				action.execute(this,  map);
+				System.out.println(action.execute(this,  map));
 			}
 		}
 	}
@@ -192,6 +217,7 @@ public class Zombie extends ZombieActor {
 		if (this.legs < minLimbs) {
 			this.legs = this.minLimbs;
 		}
+		accountForLostLeg(map);
 	}
 	
 	public void accountForLostArm(GameMap map) {
@@ -231,7 +257,7 @@ public class Zombie extends ZombieActor {
 		}
 	}
 	
-	public void accountForLostLeg() {
+	public void accountForLostLeg(GameMap map) {
 		if (this.legs == 1) {
 			//Must be true as it will be inverted in playTurn
 			this.canMove = true;
@@ -241,6 +267,4 @@ public class Zombie extends ZombieActor {
 			this.canMove = false;
 		}
 	}
-	
-	
 }
