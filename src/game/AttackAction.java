@@ -53,7 +53,6 @@ public class AttackAction extends Action {
 
 		int damage = weapon.damage();
 		
-		
 		result = result + actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		
 		if (verb == "Bite") {
@@ -63,9 +62,9 @@ public class AttackAction extends Action {
 		}
 
 		target.hurt(damage);
+		
 		//When hurting zombies
 		if (target.getDisplayChar() == 'Z') {
-			target.hurt(damage);
 			Zombie zombie = (Zombie)target;
 			ArrayList<String> limbsDropped = zombie.tryToDropLimbs(map);
 			if (limbsDropped.size() != 0) {
