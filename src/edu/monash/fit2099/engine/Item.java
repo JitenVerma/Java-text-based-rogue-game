@@ -20,12 +20,12 @@ public abstract class Item implements ItemInterface, Printable, Capable {
 	 * Constructor.
 	 * 
 	 * @param name the name of this Item
-	 * @param string the character to use to represent this item if it is on the ground
+	 * @param displayChar the character to use to represent this item if it is on the ground
 	 * @param portable true if and only if the Item can be picked up
 	 */
-	public Item(String name, char string, boolean portable) {
+	public Item(String name, char displayChar, boolean portable) {
 		this.name = name;
-		this.displayChar = string;
+		this.displayChar = displayChar;
 		this.portable = portable;
 		allowableActions = new Actions();
 	}

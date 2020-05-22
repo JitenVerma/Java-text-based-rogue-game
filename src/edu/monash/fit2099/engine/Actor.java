@@ -9,11 +9,11 @@ import edu.monash.fit2099.interfaces.ActorInterface;
 public abstract class Actor implements ActorInterface, Capable, Printable {
 
 	private Capabilities capabilities = new Capabilities();
-	public String name;
-	public char displayChar;
-	public static List<Item> inventory = new ArrayList<Item>();
-	public int maxHitPoints;
-	public int hitPoints;
+	protected String name;
+	protected char displayChar;
+	protected List<Item> inventory = new ArrayList<Item>();
+	protected int maxHitPoints;
+	protected int hitPoints;
 
 	/**
 	 * Constructor.
@@ -42,7 +42,7 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 	 * Add an item to this Actor's inventory.
 	 * @param item The Item to add.
 	 */
-	public static void addItemToInventory(Item item) {
+	public void addItemToInventory(Item item) {
 		inventory.add(item);
 	}
 
