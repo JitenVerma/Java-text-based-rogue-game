@@ -6,12 +6,15 @@ import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.DropItemAction;
+import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.PickUpItemAction;
 import edu.monash.fit2099.engine.Weapon;
@@ -208,6 +211,7 @@ public class Zombie extends ZombieActor {
 		if (this.arms < this.minLimbs) {
 			this.arms = this.minLimbs;
 		}
+		spawnArm(map);
 		accountForLostArm(map);
 	}
 	
@@ -217,6 +221,7 @@ public class Zombie extends ZombieActor {
 		if (this.legs < minLimbs) {
 			this.legs = this.minLimbs;
 		}
+		spawnLeg(map);
 		accountForLostLeg(map);
 	}
 	
@@ -266,5 +271,37 @@ public class Zombie extends ZombieActor {
 			//Must be false and will remain false
 			this.canMove = false;
 		}
+	}
+	
+	public void spawnArm(GameMap map) {
+		//Determine the location to spawn the arm
+		Location locationOfArm = getLocationToSpawnLimb(map);
+		//Spawn zombie arm at this location
+		map.at(locationOfArm.x(), locationOfArm.y()).addItem(new ZombieArm());
+	}
+
+	public void spawnLeg(GameMap map) {
+		//Determine the location to spawn leg
+		Location locationOfLeg = getLocationToSpawnLimb(map);
+		//Spawn zombie leg at this location
+		map.at(locationOfLeg.x(), locationOfLeg.y()).addItem(new ZombieLeg());
+		
+	}
+	
+	public Location getLocationToSpawnLimb(GameMap map) {
+		//Determine possible exits for the zombie
+		Location location = map.locationOf(this);
+		List<Exit> exits =  location.getExits();
+		
+		//Iterate through exits and collate all locations of exits
+		ArrayList<Location> possibleLocations = new ArrayList<Location>();
+		for (Exit exit: exits) {
+			Location destination = exit.getDestination();
+			possibleLocations.add(destination);
+		}
+		//Select the location of one exit at random
+		int randInt = new Random().nextInt(possibleLocations.size());
+		Location locationOfLimb = possibleLocations.get(randInt);
+		return locationOfLimb;
 	}
 }
