@@ -41,9 +41,9 @@ public class Human extends ZombieActor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// FIXME humans are pretty dumb, maybe they should at least run away from zombies?
-		for(int i = 0;i < actions.actions.size();i++) {
-			if (consumeHarvestedCrop.class.isInstance(actions.actions.get(i)) || HarvestAction.class.isInstance(actions.actions.get(i))) {
-				return actions.actions.get(i);
+		for(int i = 0;i < actions.size();i++) {
+			if (consumeHarvestedCrop.class.isInstance(actions.get(i)) || HarvestAction.class.isInstance(actions.get(i))) {
+				return actions.get(i);
 			}
 		}
 		return behaviour.getAction(this, map);
