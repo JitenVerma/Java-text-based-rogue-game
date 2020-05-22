@@ -50,7 +50,6 @@ public class AttackAction extends Action {
 			return actor + " misses " + target + ".";
 		}
 		
-
 		int damage = weapon.damage();
 		
 		result = result + actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";

@@ -31,12 +31,12 @@ public class HarvestAction extends Action {
 		for(int i = 0;i < items.size();i++) {
 			if(Crop.class.isInstance(items.get(i)) && items.get(i).getDisplayChar() == 'R') {
 				map.locationOf(actor).removeItem(this.ripecrop);
-				if (actor.displayChar == 'F') {
+				if (actor.getDisplayChar() == 'F') {
 					map.locationOf(actor).addItem(newfood);
 				}
-				if (actor.displayChar == 'H' || actor.displayChar == 'P') {
+				if (actor.getDisplayChar() == 'H' || actor.getDisplayChar() == 'P') {
 					//if actor is player and human then add food to inventory
-					Player.addItemToInventory(newfood);
+					//Player.addItemToInventory(newfood);
 				}
 			}
 		}
@@ -49,7 +49,7 @@ public class HarvestAction extends Action {
 	@Override
 	public String menuDescription(Actor actor) {
 		// TODO Auto-generated method stub
-		return actor.name + "harvested crop";
+		return actor.toString() + "harvested crop";
 	}
 
 
