@@ -39,6 +39,8 @@ public class AttackAction extends Action {
 		Weapon weapon = actor.getWeapon();
 		String result = "";
 		
+		//If the weapon is bite, then it's accuracy is 40%
+		//For all other weapons accuracy is 50%
 		String verb = weapon.verb();
 		if (verb == "Bite") {
 			int randInt = new Random().nextInt(10);
@@ -55,6 +57,7 @@ public class AttackAction extends Action {
 		
 		result = result + actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		
+		//If weapon is bite, then the user will regain 5 HP
 		if (verb == "Bite") {
 			int heal = 5;
 			actor.heal(heal);
@@ -64,7 +67,8 @@ public class AttackAction extends Action {
 		target.hurt(damage);
 		
 		//When hurting zombies
-		if (target.getDisplayChar() == 'Z') {
+		if (target.hasCapability(ZombieCapability.UNDEAD)) {
+		//if (target.getDisplayChar() == 'Z') {
 			Zombie zombie = (Zombie)target;
 			ArrayList<String> limbsDropped = zombie.tryToDropLimbs(map);
 			if (limbsDropped.size() != 0) {
@@ -77,6 +81,7 @@ public class AttackAction extends Action {
 			}
 		}
 		
+		//If the target dies, then drop a corpse on the map
 		if (!target.isConscious()) {
 			Item corpse = new PortableItem("dead " + target, '%');
 			map.locationOf(target).addItem(corpse);
