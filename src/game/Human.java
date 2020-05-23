@@ -3,7 +3,7 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
-
+import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 
 
@@ -16,8 +16,12 @@ import edu.monash.fit2099.engine.GameMap;
  *
  */
 public class Human extends ZombieActor {
-	private Behaviour behaviour = new WanderBehaviour();
-	/**
+	private Behaviour[] behaviours = {new WanderBehaviour(), 
+									new consumeHarvestedBehaviour()
+									};
+									
+	
+	/**								
 	 * The default constructor creates default Humans
 	 * 
 	 * @param name the human's display name
@@ -40,13 +44,15 @@ public class Human extends ZombieActor {
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		// FIXME humans are pretty dumb, maybe they should at least run away from zombies?
-		for(int i = 0;i < actions.size();i++) {
-			if (consumeHarvestedCrop.class.isInstance(actions.get(i)) || HarvestAction.class.isInstance(actions.get(i))) {
-				return actions.get(i);
+		for (Behaviour behaviour : behaviours) {
+			Action action = behaviour.getAction(this, map);
+			if (consumeHarvestedAction.class.isInstance(action)) {
+				return action;
 			}
+			if (action != null)
+				return action;
 		}
-		return behaviour.getAction(this, map);
+		return new DoNothingAction();
 	}
 
 }

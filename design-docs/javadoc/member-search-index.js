@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"game","c":"Corpse","l":"Corpse()","url":"%3Cinit%3E()"},{"p":"game","c":"Corpse","l":"setReviveTurns(int)"},{"p":"game","c":"Corpse","l":"tick(Location)","url":"tick(edu.monash.fit2099.engine.Location)"}]
