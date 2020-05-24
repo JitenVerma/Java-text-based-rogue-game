@@ -33,7 +33,7 @@ public class Zombie extends ZombieActor {
 			new HuntBehaviour(Human.class, 10),
 			new WanderBehaviour()
 	};
-	private String ZombieNoise[] =  {"braaaaaaaains", "blooooooood", "*spooky laughter*"};
+	private String zombieNoise[] =  {"braaaaaaaains", "blooooooood", "*spooky laughter*"};
 	private int arms;
 	private int legs;
 	private int minLimbs;
@@ -74,8 +74,8 @@ public class Zombie extends ZombieActor {
 		//randInt
 		int randInt = new Random().nextInt(10);
 		if (randInt == 1) {
-			int randInt2 = new Random().nextInt(ZombieNoise.length - 1);
-			System.out.println(ZombieNoise[randInt2]);
+			int randInt2 = new Random().nextInt(zombieNoise.length - 1);
+			System.out.println(zombieNoise[randInt2]);
 		}
 		//Zombie picks up items and weapons he is standing near
 		pickUpWeapons(actions, map);
@@ -308,9 +308,11 @@ public class Zombie extends ZombieActor {
 							message += myInventory.get(i);
 							firstEntry = false;
 						}
-						message += ", " + myInventory.get(i);
-						DropItemAction dropAction = new DropItemAction(myInventory.get(i));
-						dropAction.execute(this, map);
+						else {
+							message += ", " + myInventory.get(i);
+							DropItemAction dropAction = new DropItemAction(myInventory.get(i));
+							dropAction.execute(this, map);
+						}
 					}
 				}
 				System.out.println(message);

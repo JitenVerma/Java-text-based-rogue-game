@@ -42,7 +42,7 @@ public class AttackAction extends Action {
 		//If the weapon is bite, then it's accuracy is 40%
 		//For all other weapons accuracy is 50%
 		String verb = weapon.verb();
-		if (verb == "Bite") {
+		if (weapon instanceof Bite) {
 			int randInt = new Random().nextInt(10);
 			if (randInt > 3) {
 				return actor + " misses " + target + ".";
@@ -58,7 +58,7 @@ public class AttackAction extends Action {
 		result = result + actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		
 		//If weapon is bite, then the user will regain 5 HP
-		if (verb == "Bite") {
+		if (weapon instanceof Bite) {
 			int heal = 5;
 			actor.heal(heal);
 			result = result + System.lineSeparator() + actor + " has replenished " + heal + " hitpoints";
