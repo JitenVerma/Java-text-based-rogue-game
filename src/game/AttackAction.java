@@ -83,8 +83,8 @@ public class AttackAction extends Action {
 		
 		//If the target dies, then drop a corpse on the map
 		if (!target.isConscious()) {
-			Item corpse = new PortableItem("dead " + target, '%');
-			map.locationOf(target).addItem(corpse);
+			Corpse newCorpse = new Corpse();
+			map.locationOf(target).addItem(newCorpse);
 			
 			Actions dropActions = new Actions();
 			for (Item item : target.getInventory())

@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.Menu;
 public class Player extends Human {
 
 	private Menu menu = new Menu();
-
+	private consumeHarvestedBehaviour behaviour = new consumeHarvestedBehaviour();
 	/**
 	 * Constructor.
 	 *
@@ -27,6 +27,10 @@ public class Player extends Human {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
+		Action action = behaviour.getAction(this, map);
+		if (consumeHarvestedAction.class.isInstance(action)) {
+			return action;
+		}
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);

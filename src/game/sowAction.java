@@ -1,26 +1,38 @@
 package game;
-
-import java.util.Random;
-
 import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.Farmer;
+import edu.monash.fit2099.engine.Location;
+import game.UnripeCrop;
 
-public abstract class sowAction extends Action {
 
-	public String execute(Farmer farmer, GameMap map) {
-		// TODO Auto-generated method stub
-		Random rand = new Random();
-		int int_random = rand.nextInt(101); 
-		if (int_random >= 0 && int_random <=33) {
-			farmer.sow(map.locationOf(farmer));
+/**
+ * Special Action that allows Farmers to drop sow crop.
+ */
+public class sowAction extends Action {
+	/**
+	 * Constructor.
+	 *
+	 * @param locationSow location at which crop will be sown
+	 */
+		private Location locationSow;
+		public sowAction(Location locationSow) {
+			this.locationSow = locationSow;
 		}
-		return menuDescription(farmer);
+
+		@Override
+		public String execute(Actor actor, GameMap map) {
+			// TODO Auto-generated method stub
+			this.locationSow.addItem(new UnripeCrop());
+			return menuDescription(actor);
+		}
+
+		@Override
+		public String menuDescription(Actor actor) {
+			// TODO Auto-generated method stub
+			return actor + " sows crop";
+		}
+
 	}
 
-	public String menuDescription(Farmer farmer) {
-		// TODO Auto-generated method stub
-		return "Farmer has sown crop";
-	}
 
-}
