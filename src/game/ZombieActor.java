@@ -25,18 +25,6 @@ public abstract class ZombieActor extends Actor {
 		if (otherActor.hasCapability(ZombieCapability.UNDEAD) != this.hasCapability(ZombieCapability.UNDEAD))
 			list.add(new AttackAction(this));
 		
-		//If the actor is a Human/Player, check if they contain ZombieArm or ZombieLeg. If yes then add craft actions.
-		if(this.hasCapability(ZombieCapability.ALIVE) || this.hasCapability(ZombieCapability.PLAYER)) {
-			List<Item> myInventory = this.getInventory();
-			for (Item item: myInventory) {
-				if (item instanceof ZombieArm) {
-					list.add(new CraftZombieClubAction());
-				}
-				else if (item instanceof ZombieLeg) {
-					list.add(new CraftZombieMaceAction());
-				}
-			}
-		}
 		return list;
 	}
 }

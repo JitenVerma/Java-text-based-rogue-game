@@ -7,5 +7,4 @@ public class ZombieArm extends WeaponItem{
 	public ZombieArm() {
 		super("Zombie Arm", '|', 10, "whacks");
 	}
-
 }

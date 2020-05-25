@@ -17,8 +17,7 @@ public class Player extends Human {
 	private Menu menu = new Menu();
 	//private consumeHarvestedBehaviour behaviour = new consumeHarvestedBehaviour();
 	private Behaviour[] behaviours = {
-			new consumeHarvestedBehaviour(),
-			new CraftBehaviour()
+			new consumeHarvestedBehaviour()
 	};
 	
 	/**
@@ -30,38 +29,32 @@ public class Player extends Human {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		this.addCapability(ZombieCapability.PLAYER);
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		// Handle multi-turn Actions
-		for (Behaviour behaviour : behaviours) {
-			Action action = behaviour.getAction(this, map);
-//			if (consumeHarvestedAction.class.isInstance(action)) {
-//				return action;
-//			}
-//			if (action instanceof CraftZombieClubAction) {
-//				return action;
-//			}
-//			if (action instanceof CraftZombieMaceAction) {
-//				return action;
-//			}
-//			if (action != null) {
-//				return action;
-//			}
-			if (lastAction.getNextAction() != null)
-				return lastAction.getNextAction();
-		}
+		//If the zombie contains a Zombie Arm or Leg it can craft into new weapons
 		List<Item> myInventory = this.getInventory();
 		for (Item item: myInventory) {
 			if (item instanceof ZombieArm) {
 				actions.add(new CraftZombieClubAction());
 			}
-			else if (item instanceof ZombieLeg) {
+			if (item instanceof ZombieLeg) {
 				actions.add(new CraftZombieMaceAction());
 			}
 		}
+		
+		
+		for (Behaviour behaviour : behaviours) {
+			Action action = behaviour.getAction(this, map);
+			if (consumeHarvestedAction.class.isInstance(action)) {
+				return action;
+			}
+		// Handle multi-turn Actions
+		if (lastAction.getNextAction() != null)
+			return lastAction.getNextAction();
+		}
+		
 		
 		return menu.showMenu(this, actions, display);
 		
