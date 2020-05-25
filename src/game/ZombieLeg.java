@@ -6,7 +6,6 @@ public class ZombieLeg extends WeaponItem{
 
 	public ZombieLeg() {
 		super("Zombie Leg", '[', 15, "whacks");
-		// TODO Auto-generated constructor stub
 	}
 
 }

@@ -32,5 +32,4 @@ public class consumeHarvestedBehaviour implements Behaviour {
 		
 		return null;
 	}
-
 }

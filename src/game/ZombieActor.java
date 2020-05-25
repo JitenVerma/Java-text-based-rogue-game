@@ -1,8 +1,11 @@
 package game;
 
+import java.util.List;
+
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 
 /**
  * Base class for Actors in the Zombie World
@@ -15,12 +18,25 @@ public abstract class ZombieActor extends Actor {
 		super(name, displayChar, hitPoints);
 		addCapability(team);
 	}
-	
+
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions list = super.getAllowableActions(otherActor, direction, map);
 		if (otherActor.hasCapability(ZombieCapability.UNDEAD) != this.hasCapability(ZombieCapability.UNDEAD))
 			list.add(new AttackAction(this));
+		
+		//If the actor is a Human/Player, check if they contain ZombieArm or ZombieLeg. If yes then add craft actions.
+		if(this.hasCapability(ZombieCapability.ALIVE) || this.hasCapability(ZombieCapability.PLAYER)) {
+			List<Item> myInventory = this.getInventory();
+			for (Item item: myInventory) {
+				if (item instanceof ZombieArm) {
+					list.add(new CraftZombieClubAction());
+				}
+				else if (item instanceof ZombieLeg) {
+					list.add(new CraftZombieMaceAction());
+				}
+			}
+		}
 		return list;
 	}
 }
