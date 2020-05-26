@@ -16,9 +16,6 @@ public class Player extends Human {
 
 	private Menu menu = new Menu();
 	//private consumeHarvestedBehaviour behaviour = new consumeHarvestedBehaviour();
-	private Behaviour[] behaviours = {
-			new consumeHarvestedBehaviour()
-	};
 	
 	/**
 	 * Constructor.
@@ -44,7 +41,12 @@ public class Player extends Human {
 			}
 			if (item instanceof HarvestedCrop) {
 				HarvestedCrop harvestedCrop = (HarvestedCrop)item;
-				actions.add(new consumeHarvestedAction(harvestedCrop));
+				actions.add(new ConsumeHarvestedAction(harvestedCrop));
+			}
+			if (item instanceof RipeCrop) {
+				HarvestedCrop harvestedCrop = new HarvestedCrop();
+				actions.add(new ConsumeHarvestedAction(harvestedCrop));
+				this.removeItemFromInventory(harvestedCrop);
 			}
 		}
 		

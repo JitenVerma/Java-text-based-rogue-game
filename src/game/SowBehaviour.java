@@ -6,13 +6,13 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
-import game.sowAction;
+import game.SowAction;
 import java.util.ArrayList;
 
 /**
  * A class that figures out when the ripe crop can be harvested by farmer
  */
-public class sowBehaviour implements Behaviour {
+public class SowBehaviour implements Behaviour {
 
 
 
@@ -23,7 +23,7 @@ public class sowBehaviour implements Behaviour {
 		ArrayList<Location> validLocations = validGroundAroundActor(actor, map);
 		if (validLocations.size() > 0) {
 			if (randomNumber >= 0 && randomNumber <= 33) {
-				return new sowAction(validLocations.get(0));
+				return new SowAction(validLocations.get(0));
 			}
 		}
 		// TODO Auto-generated method stub

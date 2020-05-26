@@ -18,7 +18,7 @@ public class consumeHarvestedBehaviour implements Behaviour {
 				Action pickUpItem = new PickUpItemAction((HarvestedCrop) map.locationOf(actor).getItems().get(i));
 				pickUpItem.execute(actor, map);
 				
-				return new consumeHarvestedAction((HarvestedCrop) map.locationOf(actor).getItems().get(i));
+				return new ConsumeHarvestedAction((HarvestedCrop) map.locationOf(actor).getItems().get(i));
 			}
 		}
 
