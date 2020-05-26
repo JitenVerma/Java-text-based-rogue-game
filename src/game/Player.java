@@ -42,19 +42,22 @@ public class Player extends Human {
 			if (item instanceof ZombieLeg) {
 				actions.add(new CraftZombieMaceAction());
 			}
+			if (item instanceof HarvestedCrop) {
+				HarvestedCrop harvestedCrop = (HarvestedCrop)item;
+				actions.add(new consumeHarvestedAction(harvestedCrop));
+			}
 		}
 		
 		
-		for (Behaviour behaviour : behaviours) {
-			Action action = behaviour.getAction(this, map);
-			if (consumeHarvestedAction.class.isInstance(action)) {
-				return action;
-			}
+//		for (Behaviour behaviour : behaviours) {
+//			Action action = behaviour.getAction(this, map);
+//			if (consumeHarvestedAction.class.isInstance(action)) {
+//				return action;
+//			}
+//		}
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
-		}
-		
 		
 		return menu.showMenu(this, actions, display);
 		

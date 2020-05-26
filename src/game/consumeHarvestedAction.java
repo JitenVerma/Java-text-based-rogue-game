@@ -14,6 +14,7 @@ public class consumeHarvestedAction extends Action {
 	 * @param crop crop which has to be harvested
 	 */
 	private HarvestedCrop crop;
+	
 	public consumeHarvestedAction(HarvestedCrop crop) {
 		this.crop = crop;
 		
@@ -33,7 +34,7 @@ public class consumeHarvestedAction extends Action {
 	@Override
 	public String menuDescription(Actor actor) {
 		// TODO Auto-generated method stub
-		return actor + " healed 20 hitpoints";
+		return actor + " consumes harvested crop to heal 20 hitpoints";
 		
 	}
 

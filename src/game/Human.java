@@ -16,9 +16,10 @@ import edu.monash.fit2099.engine.GameMap;
  *
  */
 public class Human extends ZombieActor {
-	private Behaviour[] behaviours = {new WanderBehaviour(), 
-									new consumeHarvestedBehaviour()
-									};
+	private Behaviour[] behaviours = {
+			new consumeHarvestedBehaviour(),
+			new WanderBehaviour()
+	};
 									
 	
 	/**								

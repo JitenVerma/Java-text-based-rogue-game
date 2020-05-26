@@ -13,23 +13,15 @@ public class consumeHarvestedBehaviour implements Behaviour {
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		// TODO Auto-generated method stub
-		if(actor.getDisplayChar() == '@') {
-			for(int i = 0; i < actor.getInventory().size(); i++) {
-				if(HarvestedCrop.class.isInstance(actor.getInventory().get(i))) {
-					return new consumeHarvestedAction((HarvestedCrop) actor.getInventory().get(i));
-				}
+		for (int i = 0; i < map.locationOf(actor).getItems().size(); i++) {
+			if (map.locationOf(actor).getItems().get(i).getDisplayChar() == 'O') {
+				Action pickUpItem = new PickUpItemAction((HarvestedCrop) map.locationOf(actor).getItems().get(i));
+				pickUpItem.execute(actor, map);
+				
+				return new consumeHarvestedAction((HarvestedCrop) map.locationOf(actor).getItems().get(i));
 			}
 		}
-		else if(actor.getDisplayChar() == 'H') {
-			for(int i = 0; i < map.locationOf(actor).getItems().size(); i++) {
-				if(map.locationOf(actor).getItems().get(i).getDisplayChar() == 'O') {
-					Action pickUpItem = new PickUpItemAction((HarvestedCrop) map.locationOf(actor).getItems().get(i));
-					pickUpItem.execute(actor, map);
-					return new consumeHarvestedAction((HarvestedCrop)map.locationOf(actor).getItems().get(i) );
-					}			
-				}
-		}
-		
+
 		return null;
 	}
 }
