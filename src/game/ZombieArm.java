@@ -11,6 +11,7 @@ public class ZombieArm extends WeaponItem{
 	/**
 	 * Constructor
 	 * 
+	 * 
 	 */
 	public ZombieArm() {
 		super("Zombie Arm", '|', 10, "whacks");
