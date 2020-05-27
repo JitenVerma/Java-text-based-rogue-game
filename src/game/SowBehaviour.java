@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.Location;
 import game.SowAction;
 import java.util.ArrayList;
 
-/**
+/** @author Ayesha
  * A class that figures out when the ripe crop can be harvested by farmer
  */
 public class SowBehaviour implements Behaviour {
@@ -29,6 +29,11 @@ public class SowBehaviour implements Behaviour {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	/**
+	 * This method checks possible location in which a crop can be sown 
+	 * @param actions list of allowable actions for human
+	 * @param map map of the game
+	 */
 	private ArrayList<Location> validGroundAroundActor(Actor actor, GameMap map) {
 		ArrayList<Location> validLocations = new ArrayList<>();
 		Location locationOfActor = map.locationOf(actor);

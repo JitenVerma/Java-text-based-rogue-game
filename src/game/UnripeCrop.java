@@ -2,7 +2,7 @@ package game;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
-/**
+/** @author Ayesha
  * Class representing UnripeCrop, extends Item as it is non-portable.
  */
 public class UnripeCrop extends Item {

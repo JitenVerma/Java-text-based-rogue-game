@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.PickUpItemAction;
 
 
-/**
+/**@author Ayesha
  * Special Action that allows Farmers and Players to harvest crop.
  */
 

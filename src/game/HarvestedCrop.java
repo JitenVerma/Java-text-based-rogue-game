@@ -1,7 +1,7 @@
 package game;
 
 public class HarvestedCrop extends PortableItem {
-	/**
+	/** @author Ayesha
 	 * Class representing HarvestedCrop, extends PortableItem as it is portable.
 	 */
 	public HarvestedCrop() {

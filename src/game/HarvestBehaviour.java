@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 
-/**
+/**@author Ayesha
  * A class that figures out when the ripe crop can be harvested by farmer
  */
 public class HarvestBehaviour implements Behaviour {
@@ -23,7 +23,11 @@ public class HarvestBehaviour implements Behaviour {
 		}
 		return null;
 	}
-
+	/**
+	 * This method checks possible locations in which a crop can be sown
+	 * @param actions list of allowable actions for human
+	 * @param map map of the game
+	 */
 	private ArrayList<Location> possibleLocation(Actor actor, GameMap map) {
 	ArrayList<Location> validLocations = new ArrayList<>();
 	Location actorLocation = map.locationOf(actor);

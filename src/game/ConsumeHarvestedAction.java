@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
 /**
+ * @author Ayesha
  * Special Action that allows humans and players to consume crop
  */
 //

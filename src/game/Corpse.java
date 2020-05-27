@@ -4,7 +4,7 @@ import java.util.Random;
 
 import edu.monash.fit2099.engine.Location;
 /** Class representing Corpse which extends PortableItem, it represents dead human
- *
+ * @author Ayesha
  */
 public class Corpse extends PortableItem {
 
