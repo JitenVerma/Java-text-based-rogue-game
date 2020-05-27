@@ -8,7 +8,9 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
 public class CraftZombieMaceAction extends Action{
-
+	/**
+	 * Constructor
+	 */
 	public CraftZombieMaceAction() {
 		
 	}
