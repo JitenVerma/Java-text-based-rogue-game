@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.GameMap;
  * Special Action that allows humans and players to consume crop
  */
 //
-public class consumeHarvestedAction extends Action {
+public class ConsumeHarvestedAction extends Action {
 	/**
 	 * Constructor.
 	 *
@@ -15,7 +15,7 @@ public class consumeHarvestedAction extends Action {
 	 */
 	private HarvestedCrop crop;
 	
-	public consumeHarvestedAction(HarvestedCrop crop) {
+	public ConsumeHarvestedAction(HarvestedCrop crop) {
 		this.crop = crop;
 		
 	}
@@ -24,8 +24,8 @@ public class consumeHarvestedAction extends Action {
 	public String execute(Actor actor, GameMap map) {
 		//checks if food is in humans,players inventory if it is then call heal method and remove food from inventory
 		
-		actor.heal(20);
 		actor.removeItemFromInventory(crop);
+		actor.heal(20);
 		return menuDescription(actor);
 		
 		// TODO Auto-generated method stub 
@@ -41,3 +41,4 @@ public class consumeHarvestedAction extends Action {
 
 
 }
+

@@ -5,6 +5,8 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.PickUpItemAction;
+
 
 
 
@@ -17,7 +19,6 @@ import edu.monash.fit2099.engine.GameMap;
  */
 public class Human extends ZombieActor {
 	private Behaviour[] behaviours = {
-			new consumeHarvestedBehaviour(),
 			new WanderBehaviour()
 	};
 									
@@ -47,13 +48,49 @@ public class Human extends ZombieActor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
-			if (consumeHarvestedAction.class.isInstance(action)) {
+			
+			if (this.hitPoints < this.maxHitPoints) {
+				pickUpFood(actions,map);
+			}
+			
+			if (action != null) {
 				return action;
 			}
-			if (action != null)
-				return action;
+			
+			
 		}
-		return new DoNothingAction();
+		return new DoNothingAction();	
 	}
+				
+	/**
+	 * This allows us to human to pick up food if it is on same location
+	 * and get some hitPoints, after consuming it is removed from inventory
+	 * This method only called when human is damaged
+	 * @param actions list of allowable actions for human
+	 * @param map map of the game
+	 */
+		public void pickUpFood(Actions actions, GameMap map) {
+			for(Action action: actions) {
+				if (action instanceof PickUpItemAction) {
+					System.out.println(action.execute(this,  map));
+					
+			for (int i = 0; i < this.getInventory().size();i++) {
+				if(this.getInventory().get(i) instanceof HarvestedCrop) {
+					this.heal(20);
+					this.removeItemFromInventory(this.getInventory().get(i));
+					System.out.println(this.name + " consumes harvested crop to heal 20 hitpoints");
+					
+				}
+			}
+					
+				}
+			}
+		
+		}
+	}
+	
 
-}
+
+
+
+

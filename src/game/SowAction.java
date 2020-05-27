@@ -9,14 +9,14 @@ import game.UnripeCrop;
 /**
  * Special Action that allows Farmers to drop sow crop.
  */
-public class sowAction extends Action {
+public class SowAction extends Action {
 	/**
 	 * Constructor.
 	 *
 	 * @param locationSow location at which crop will be sown
 	 */
 		private Location locationSow;
-		public sowAction(Location locationSow) {
+		public SowAction(Location locationSow) {
 			this.locationSow = locationSow;
 		}
 
