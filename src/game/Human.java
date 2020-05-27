@@ -62,7 +62,13 @@ public class Human extends ZombieActor {
 		return new DoNothingAction();	
 	}
 				
-	
+	/**
+	 * This allows us to human to pick up food if it is on same location
+	 * and get some hitPoints, after consuming it is removed from inventory
+	 * This method only called when human is damaged
+	 * @param actions list of allowable actions for human
+	 * @param map map of the game
+	 */
 		public void pickUpFood(Actions actions, GameMap map) {
 			for(Action action: actions) {
 				if (action instanceof PickUpItemAction) {
@@ -72,11 +78,10 @@ public class Human extends ZombieActor {
 				if(this.getInventory().get(i) instanceof HarvestedCrop) {
 					this.heal(20);
 					this.removeItemFromInventory(this.getInventory().get(i));
-					System.out.println(this.name + "consumes harvested crop to heal 20 hitpoints");
+					System.out.println(this.name + " consumes harvested crop to heal 20 hitpoints");
 					
 				}
 			}
-			System.out.println("Pickup");
 					
 				}
 			}
