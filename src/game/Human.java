@@ -48,13 +48,16 @@ public class Human extends ZombieActor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
-//			if (ConsumeHarvestedAction.class.isInstance(action)) {
-//				return action;
-//			}
+			
+			if (this.hitPoints < this.maxHitPoints) {
+				pickUpFood(actions,map);
+			}
+			
 			if (action != null) {
 				return action;
 			}
-			pickUpFood(actions,map);
+			
+			
 		}
 		return new DoNothingAction();	
 	}
@@ -64,13 +67,16 @@ public class Human extends ZombieActor {
 			for(Action action: actions) {
 				if (action instanceof PickUpItemAction) {
 					System.out.println(action.execute(this,  map));
+					
 			for (int i = 0; i < this.getInventory().size();i++) {
 				if(this.getInventory().get(i) instanceof HarvestedCrop) {
 					this.heal(20);
 					this.removeItemFromInventory(this.getInventory().get(i));
 					System.out.println(this.name + "consumes harvested crop to heal 20 hitpoints");
+					
 				}
 			}
+			System.out.println("Pickup");
 					
 				}
 			}
