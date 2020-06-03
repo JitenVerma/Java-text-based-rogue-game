@@ -14,7 +14,7 @@ import edu.monash.fit2099.engine.PickUpItemAction;
  * Class representing an ordinary human.
  * 
  * 
- * @author ram
+ * @author Ayesha
  *
  */
 public class Human extends ZombieActor {

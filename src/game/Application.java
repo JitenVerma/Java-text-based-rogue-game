@@ -65,6 +65,7 @@ public class Application {
 			} 
 			while (gameMap.at(x, y).containsAnActor());
 			gameMap.at(x,  y).addActor(new Human(name));	
+			//test push
 		}
 		//place a farmer
 		String[] farmernames = {"Fred","Fed","Mays","Mayson"};

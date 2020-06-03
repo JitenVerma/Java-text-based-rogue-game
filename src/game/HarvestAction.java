@@ -14,7 +14,7 @@ import edu.monash.fit2099.engine.PickUpItemAction;
 public class HarvestAction extends Action {
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param locationHarvest location at which ripe crop will be harvested
 	 */
 	private Location locationHarvest;
