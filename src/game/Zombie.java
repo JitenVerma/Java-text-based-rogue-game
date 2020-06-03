@@ -365,7 +365,6 @@ public class Zombie extends ZombieActor {
 		
 	}
 	
-	
 	/**
 	 * This allows us to determine which locations next to a zombie can an item be dropped to
 	 * Multiple items may be dropped onto the one location on the map
