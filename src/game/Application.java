@@ -126,6 +126,7 @@ public class Application {
 		//Add a vehicle to the original map
 		gameMap.at(43, 15).addItem(new Vehicle(townMap));
 		
+		
 		world.run();
 	}
 }
