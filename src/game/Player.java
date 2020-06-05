@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Menu;
+import edu.monash.fit2099.engine.PickUpItemAction;
 
 /**
  * Class representing the Player.
@@ -49,6 +50,8 @@ public class Player extends Human {
 				this.removeItemFromInventory(harvestedCrop);
 			}
 		}
+		actions.add(new ExitAction());
+		
 		
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
@@ -58,3 +61,5 @@ public class Player extends Human {
 		
 	}
 }
+	
+	

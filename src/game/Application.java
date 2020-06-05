@@ -19,7 +19,6 @@ public class Application {
 
 	public static void main(String[] args) {
 		World world = new World(new Display());
-
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Fence(), new Tree());
 		
 		List<String> map = Arrays.asList(
@@ -55,31 +54,30 @@ public class Application {
 		world.addPlayer(player, gameMap.at(42, 15));
 		
 	    // Place some random humans
-		String[] humans = {"Carlton", "May", "Vicente", "Andrea", "Wendy",
-				"Elina", "Winter", "Clem", "Jacob", "Jaquelyn"};
-		int x, y;
-		for (String name : humans) {
-			do {
-				x = (int) Math.floor(Math.random() * 20.0 + 30.0);
-				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
-			} 
-			while (gameMap.at(x, y).containsAnActor());
-			gameMap.at(x,  y).addActor(new Human(name));	
-		}
+//		String[] humans = {"Carlton", "May", "Vicente", "Andrea", "Wendy",
+//				"Elina", "Winter", "Clem", "Jacob", "Jaquelyn"};
+//		int x, y;
+//		for (String name : humans) {
+//			do {
+//				x = (int) Math.floor(Math.random() * 20.0 + 30.0);
+//				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
+//			} 
+//			while (gameMap.at(x, y).containsAnActor());
+//			gameMap.at(x,  y).addActor(new Human(name));	
+//		}
 		//place a farmer
-		String[] farmernames = {"Fred","Fed","Mays","Mayson"};
-		ArrayList<Farmer> farmers = new ArrayList<Farmer>();
-		int fx, fy;
-		for (String name : farmernames) {
-			do {
-				fx = (int) Math.floor(Math.random() * 20.0 + 30.0);
-				fy = (int) Math.floor(Math.random() * 7.0 + 5.0);
-			} 
-			while (gameMap.at(fx, fy).containsAnActor());
-			farmers.add(new Farmer(name));
-			gameMap.at(fx,  fy).addActor(new Farmer(name));	
-		}
-
+//		String[] farmernames = {"Fred","Fed","Mays","Mayson"};
+//		ArrayList<Farmer> farmers = new ArrayList<Farmer>();
+//		int fx, fy;
+//		for (String name : farmernames) {
+//			do {
+//				fx = (int) Math.floor(Math.random() * 20.0 + 30.0);
+//				fy = (int) Math.floor(Math.random() * 7.0 + 5.0);
+//			} 
+//			while (gameMap.at(fx, fy).containsAnActor());
+//			farmers.add(new Farmer(name));
+//			gameMap.at(fx,  fy).addActor(new Farmer(name));	
+//		}
 		// place a simple weapon
 		gameMap.at(74, 20).addItem(new Plank());
 		gameMap.at(50, 20).addItem(new Plank());
@@ -90,7 +88,8 @@ public class Application {
 		gameMap.at(10,  4).addActor(new Zombie("Uuuurgh"));
 		gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
 		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
-		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));	
+		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 		world.run();
+
 	}
 }
