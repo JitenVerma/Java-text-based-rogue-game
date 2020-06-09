@@ -39,6 +39,9 @@ public class Player extends Human {
 			if (item instanceof ZombieLeg) {
 				actions.add(new CraftZombieMaceAction());
 			}
+			if (item instanceof Shotgun) {
+				actions.add(new FireShotgunAction(this, map, display));
+			}
 			if (item instanceof HarvestedCrop) {
 				HarvestedCrop harvestedCrop = (HarvestedCrop)item;
 				actions.add(new ConsumeHarvestedAction(harvestedCrop));
