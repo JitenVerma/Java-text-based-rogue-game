@@ -1,6 +1,9 @@
 package game;
 
+import java.util.ArrayList;
+
 import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
@@ -23,10 +26,35 @@ public class ShootAction extends Action{
 		NumberRange xRange = map.getXRange();
 		NumberRange yRange = map.getYRange();
 		Location currentLocation = map.locationOf(actor);
+		ArrayList<Action> actions = new ArrayList<Action>();
+		AttackAction attackAction = null;
 		if (this.direction == "North") {
-			
+			actions = shootNorth(actor, map, xRange, yRange, currentLocation, actions);
 		}
-		
+		else if (this.direction == "Northeast") {
+			actions = shootNorthEast(actor, map, xRange, yRange, currentLocation, actions);
+		}
+		else if (this.direction == "East") {
+			actions = shootEast(actor, map, xRange, yRange, currentLocation, actions);
+		}
+		else if (this.direction == "Southeast") {
+			actions = shootSouthEast(actor, map, xRange, yRange, currentLocation, actions);
+		}
+		else if (this.direction == "South") {
+			actions = shootSouth(actor, map, xRange, yRange, currentLocation, actions);
+		}
+		else if (this.direction == "Southwest") {
+			actions = shootSouthWest(actor, map, xRange, yRange, currentLocation, actions);
+		}
+		else if (this.direction == "West") {
+			actions = shootWest(actor, map, xRange, yRange, currentLocation, actions);
+		}
+		else if (this.direction == "Northwest") {
+			actions = shootNorthWest(actor, map, xRange, yRange, currentLocation, actions);
+		}
+		for (Action action: actions) {
+			System.out.println(action.execute(actor, map));
+		}
 		return menuDescription(actor);
 	}
 
@@ -36,7 +64,192 @@ public class ShootAction extends Action{
 		return actor + " shoots " + direction;
 	}
 	
-	public void shootNorth(Actor actor, GameMap map, NumberRange xRange, NumberRange yRange, Location currentLocation) {
+	public ArrayList<Action> shootNorth(Actor actor, GameMap map, NumberRange xRange, NumberRange yRange, Location currentLocation, ArrayList<Action> actions) {
+		int y = currentLocation.y() - 1;
+		if (yRange.contains(y)) {
+			for (int x = currentLocation.x() - 1; x < currentLocation.x() + 3; x++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		y -= 1;
+		if (yRange.contains(y)) {
+			for (int x = currentLocation.x() - 2; x < currentLocation.x() + 5; x++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		y -= 1;
+		if (yRange.contains(y)) {
+			for (int x = currentLocation.x() - 3; x < currentLocation.x() + 7; x++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		return actions;
+	}
+	
+	public ArrayList<Action> shootEast(Actor actor, GameMap map, NumberRange xRange, NumberRange yRange, Location currentLocation, ArrayList<Action> actions) {
 		
+		int x = currentLocation.x() + 1;
+		if (yRange.contains(x)) {
+			for (int y = currentLocation.y() + 1; y < currentLocation.y() + 3; y++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		x += 1;
+		if (yRange.contains(x)) {
+			for (int y = currentLocation.y() - 2; y < currentLocation.y() + 5; y++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		x += 1;
+		if (yRange.contains(x)) {
+			for (int y = currentLocation.y() - 3; y < currentLocation.y() + 7; y++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		return actions;
+	}
+	
+	public ArrayList<Action> shootWest(Actor actor, GameMap map, NumberRange xRange, NumberRange yRange, Location currentLocation, ArrayList<Action> actions) {
+		int x = currentLocation.x() - 1;
+		if (yRange.contains(x)) {
+			for (int y = currentLocation.y() + 1; y < currentLocation.y() + 3; y++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		x -= 1;
+		if (yRange.contains(x)) {
+			for (int y = currentLocation.y() - 2; y < currentLocation.y() + 5; y++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		x -= 1;
+		if (yRange.contains(x)) {
+			for (int y = currentLocation.y() - 3; y < currentLocation.y() + 7; y++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		return actions;
+	}
+	
+	public ArrayList<Action> shootSouth(Actor actor, GameMap map, NumberRange xRange, NumberRange yRange, Location currentLocation, ArrayList<Action> actions) {
+		int y = currentLocation.y() + 1;
+		if (yRange.contains(y)) {
+			for (int x = currentLocation.x() - 1; x < currentLocation.x() + 3; x++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		y += 1;
+		if (yRange.contains(y)) {
+			for (int x = currentLocation.x() - 2; x < currentLocation.x() + 5; x++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		y += 1;
+		if (yRange.contains(y)) {
+			for (int x = currentLocation.x() - 3; x < currentLocation.x() + 7; x++) {
+				Action attackAction = checkLocation(map, xRange, y, x);
+				if (attackAction != null) {
+					actions.add(attackAction);
+				}
+			}
+		}
+		return actions;
+	}
+	
+	public ArrayList<Action> shootNorthEast(Actor actor, GameMap map, NumberRange xRange, NumberRange yRange, Location currentLocation, ArrayList<Action> actions) {
+		for (int y = currentLocation.y() - 3; y < currentLocation.y() + 1; y++) {
+			for (int x = currentLocation.x(); x < currentLocation.x() + 4; x++) {
+				if (x != currentLocation.x() && y != currentLocation.y()) {
+					Action attackAction = checkLocation(map, xRange, y, x);
+					if (attackAction != null) {
+						actions.add(attackAction);
+					}
+				}
+			}
+		}
+		return actions;
+	}
+	
+	public ArrayList<Action> shootNorthWest(Actor actor, GameMap map, NumberRange xRange, NumberRange yRange, Location currentLocation, ArrayList<Action> actions) {
+		for (int y = currentLocation.y() - 3; y < currentLocation.y() + 1; y++) {
+			for (int x = currentLocation.x() - 3; x < currentLocation.x() + 1; x++) {
+				if (x != currentLocation.x() && y != currentLocation.y()) {
+					Action attackAction = checkLocation(map, xRange, y, x);
+					if (attackAction != null) {
+						actions.add(attackAction);
+					}
+				}
+			}
+		}
+		return actions;
+	}
+	public ArrayList<Action> shootSouthEast(Actor actor, GameMap map, NumberRange xRange, NumberRange yRange, Location currentLocation, ArrayList<Action> actions) {
+		for (int y = currentLocation.y(); y < currentLocation.y() + 4; y++) {
+			for (int x = currentLocation.x(); x < currentLocation.x() + 4; x++) {
+				if (x != currentLocation.x() && y != currentLocation.y()) {
+					Action attackAction = checkLocation(map, xRange, y, x);
+					if (attackAction != null) {
+						actions.add(attackAction);
+					}
+				}
+			}
+		}
+		return actions;
+	}
+	public ArrayList<Action> shootSouthWest(Actor actor, GameMap map, NumberRange xRange, NumberRange yRange, Location currentLocation, ArrayList<Action> actions) {
+		for (int y = currentLocation.y(); y < currentLocation.y() + 4; y++) {
+			for (int x = currentLocation.x() - 3; x < currentLocation.x() + 1; x++) {
+				if (x != currentLocation.x() && y != currentLocation.y()) {
+					Action attackAction = checkLocation(map, xRange, y, x);
+					if (attackAction != null) {
+						actions.add(attackAction);
+					}
+				}
+			}
+		}
+		return actions;
+	}
+
+	public AttackAction checkLocation(GameMap map, NumberRange xRange, int y, int x) {
+		if (xRange.contains(x)) {
+			Location checkLocation = new Location(map, x, y);
+			if (map.isAnActorAt(checkLocation)) {
+				return new AttackAction(map.getActorAt(checkLocation));
+			}
+		}
+		return null;
 	}
 }
