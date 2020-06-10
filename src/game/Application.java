@@ -117,7 +117,7 @@ public class Application {
 				"................................................+.............###......##.......",
 				"...............................................................########.........",
 				"................................................................................");
-		GameMap townMap = new GameMap(groundFactory, map2 );
+		GameMap townMap = new GameMap(groundFactory, map2);
 		world.addGameMap(townMap);
 		
 		//Add a vehicle to the original map
