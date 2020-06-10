@@ -13,7 +13,6 @@ public class Corpse extends PortableItem {
 		/**
 		 * Random number generator for the number of turns required to convert corpse to zombie
 		 */
-		Random rand = new Random();
 		this.setReviveTurns(5 + (int)(Math.random() * ((10 - 5) + 1)));
 		// TODO Auto-generated constructor stub
 	}

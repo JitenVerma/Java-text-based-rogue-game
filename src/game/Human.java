@@ -50,8 +50,6 @@ public class Human extends ZombieActor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
-			World2 worldobj = new World2(new Display());
-			worldobj.run();
 			if (this.hitPoints < this.maxHitPoints) {
 				pickUpFood(actions,map);
 			}
