@@ -13,7 +13,7 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Menu;
 
 public class FireShotgunAction extends Action{
-	private Menu menu = new Menu();
+	private Menu subMenu = new Menu();
 	private Display display;
 	
 	public FireShotgunAction(Actor actor, GameMap map, Display display) {
@@ -31,7 +31,7 @@ public class FireShotgunAction extends Action{
 		}
 		Actions actions1 = new Actions();
 		actions1.add(actions);
-		Action shotDirection = menu.showMenu(actor, actions1, display);
+		Action shotDirection = subMenu.showMenu(actor, actions1, display);
 		
 		return shotDirection.execute(actor, map);
 	}

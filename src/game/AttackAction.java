@@ -48,6 +48,12 @@ public class AttackAction extends Action {
 				return actor + " misses " + target + ".";
 			}
 		}
+		else if (weapon instanceof Shotgun) {
+			int randInt = new Random().nextInt(100);
+			if (randInt > 75) {
+				return actor + " misses " + target + ".";
+			}
+		}
 		else if (rand.nextBoolean()) {
 			return actor + " misses " + target + ".";
 		}
