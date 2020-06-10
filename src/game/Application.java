@@ -18,7 +18,7 @@ import edu.monash.fit2099.engine.World;
 public class Application {
 
 	public static void main(String[] args) {
-		World world = new World(new Display());
+		Endgame world = new Endgame(new Display());
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Fence(), new Tree());
 		
 		List<String> map = Arrays.asList(
@@ -83,12 +83,12 @@ public class Application {
 		gameMap.at(50, 20).addItem(new Plank());
 		
 		// FIXME: Add more zombies!
-		gameMap.at(30, 20).addActor(new Zombie("Groan"));
-		gameMap.at(30,  18).addActor(new Zombie("Boo"));
-		gameMap.at(10,  4).addActor(new Zombie("Uuuurgh"));
-		gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
-		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
-		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));	
+//		gameMap.at(30, 20).addActor(new Zombie("Groan"));
+//		gameMap.at(30,  18).addActor(new Zombie("Boo"));
+//		gameMap.at(10,  4).addActor(new Zombie("Uuuurgh"));
+//		gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
+//		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
+//		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));	
 		
 		//Create town map
 		List<String> map2 = Arrays.asList(

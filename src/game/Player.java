@@ -34,14 +34,6 @@ public class Player extends Human {
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		if(checkHuman(map, display)) {
-			display.println("Humans are extinct, Player has lost");
-			map.removeActor(this);
-		}
-		if(checkZombies(map, display)) {
-			display.println("Zombies and Mambo Marie are extinct, Player has won");
-			map.removeActor(this);
-		}
 		placeMamboMarie(map,display);
 		List<Item> myInventory = this.getInventory();
 		for (Item item: myInventory) {
@@ -72,44 +64,10 @@ public class Player extends Human {
 		
 	}
 	/**
-	 * Checks if there are any humans in map except for player.If there aren't the game is over and player has lost. 
+	 * Checks if there is Mambo Marie in map.If there is it returns true if it doesnt exist else returns false. 
 	 * @param map        the map containing the Actor
 	 * @param display    the I/O object to which messages may be written
-	 */
-	private boolean checkHuman(GameMap map, Display display) {
-		boolean checkHuman = true;
-		for(int i = 0;i < map.getXRange().max() ;i++) {
-			for(int j = 0;j < map.getYRange().max() ;j++) {
-				if ((map.at(i,j).getActor() instanceof Human) && !(map.at(i,j).getActor() instanceof Player)){
-					checkHuman = false;
-					break;
-					}
-				}
-		}
-		return checkHuman;
-	}
-	/**
-	 * Checks if there are any zombies and Mambo Marie in map.If there aren't the game is over and player has won. 
-	 * @param map        the map containing the Actor
-	 * @param display    the I/O object to which messages may be written
-	 */
-	private boolean checkZombies(GameMap map, Display display) {
-		boolean zombieCheck = true;
-		for(int i = 0;i < map.getXRange().max() ;i++) {
-			for(int j = 0;j < map.getYRange().max() ;j++) {
-				if (map.at(i,j).getActor() instanceof Zombie || map.at(i,j).getActor() instanceof MamboMarie){
-					zombieCheck = false;
-					break;
-					}
-				}
-		}
-		return zombieCheck;
-	}
-	/**
-	 * Checks if there is Mambo Marie in map.If there is it returns true else returns false. 
-	 * @param map        the map containing the Actor
-	 * @param display    the I/O object to which messages may be written
-	 * @return MarioCheck if MamboMambie exists or not
+	 * @return MarioCheck if MamboMambie exists or not, returns true if it does not else false
 	 */
 	private boolean checkMamboMarie(GameMap map, Display display) {
 		boolean MarioCheck = true;
