@@ -1,1 +1,1 @@
-memberSearchIndex = [{"p":"game","c":"ExitAction","l":"execute(Actor, GameMap)","url":"execute(edu.monash.fit2099.engine.Actor,edu.monash.fit2099.engine.GameMap)"},{"p":"game","c":"ExitAction","l":"ExitAction()","url":"%3Cinit%3E()"},{"p":"game","c":"ExitAction","l":"hotkey()"},{"p":"game","c":"ExitAction","l":"menuDescription(Actor)","url":"menuDescription(edu.monash.fit2099.engine.Actor)"}]
+memberSearchIndex = [{"p":"game","c":"Endgame","l":"Endgame(Display)","url":"%3Cinit%3E(edu.monash.fit2099.engine.Display)"},{"p":"game","c":"Endgame","l":"run()"}]

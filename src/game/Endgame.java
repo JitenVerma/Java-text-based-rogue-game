@@ -71,7 +71,7 @@ public class Endgame extends World {
 		return checkHuman;
 	}
 	/**
-	 * Checks if there are any zombies and Mambo Marie in map.If there aren't it returns true else false. 
+	 * Checks if there are any zombies and mambo marie in map.If there aren't it returns true else false. 
 	 * @param map        the map containing the Actor
 	 * @param display    the I/O object to which messages may be written
 	 * @return zombieCheck if zombies and mambo marie exists or not, returns true if it does not else false
