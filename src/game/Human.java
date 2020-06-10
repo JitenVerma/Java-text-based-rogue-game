@@ -2,9 +2,11 @@ package game;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.PickUpItemAction;
 
 
@@ -48,7 +50,6 @@ public class Human extends ZombieActor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
-			
 			if (this.hitPoints < this.maxHitPoints) {
 				pickUpFood(actions,map);
 			}
@@ -59,6 +60,7 @@ public class Human extends ZombieActor {
 			
 			
 		}
+		
 		return new DoNothingAction();	
 	}
 				
@@ -87,7 +89,18 @@ public class Human extends ZombieActor {
 			}
 		
 		}
-	}
+		public void endGame(Actions actions, GameMap map) {
+			for(int i = 0;i < map.getXRange().max() ;i++) {
+				for(int j = 0;j < map.getYRange().max() ;j++) {
+					if (!(map.at(i,j).getActor() instanceof Human)){
+						System.out.println("Game Over");
+						System.exit(0);
+					}
+				}
+			}
+		}
+}
+
 	
 
 

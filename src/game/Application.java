@@ -19,7 +19,6 @@ public class Application {
 
 	public static void main(String[] args) {
 		World world = new World(new Display());
-
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Fence(), new Tree());
 		
 		List<String> map = Arrays.asList(
@@ -55,8 +54,7 @@ public class Application {
 		world.addPlayer(player, gameMap.at(42, 15));
 		
 	    // Place some random humans
-		String[] humans = {"Carlton", "May", "Vicente", "Andrea", "Wendy",
-				"Elina", "Winter", "Clem", "Jacob", "Jaquelyn"};
+		String[] humans = {"Carlton","May","Carl","Judy"};
 		int x, y;
 		for (String name : humans) {
 			do {
@@ -80,7 +78,6 @@ public class Application {
 			farmers.add(new Farmer(name));
 			gameMap.at(fx,  fy).addActor(new Farmer(name));	
 		}
-
 		// place a simple weapon
 		gameMap.at(74, 20).addItem(new Plank());
 		gameMap.at(50, 20).addItem(new Plank());
@@ -160,5 +157,7 @@ public class Application {
 		townMap.at(2, 1).addItem(new SniperRifle());
 		
 		world.run();
+		
+
 	}
 }
