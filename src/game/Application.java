@@ -168,7 +168,5 @@ public class Application {
 		townMap.at(2, 1).addItem(new SniperRifle());
 		
 		world.run();
-		
-
 	}
 }
