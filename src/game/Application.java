@@ -63,6 +63,7 @@ public class Application {
 			} 
 			while (gameMap.at(x, y).containsAnActor());
 			gameMap.at(x,  y).addActor(new Human(name));	
+			//test push
 		}
 		//place a farmer
 		String[] farmernames = {"Fred","Fed","Mays","Mayson"};
@@ -82,15 +83,79 @@ public class Application {
 		gameMap.at(50, 20).addItem(new Plank());
 		
 		// FIXME: Add more zombies!
-//		gameMap.at(30, 20).addActor(new Zombie("Groan"));
-//		gameMap.at(30,  18).addActor(new Zombie("Boo"));
-//		gameMap.at(10,  4).addActor(new Zombie("Uuuurgh"));
-//		gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
-//		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
-//		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
+		gameMap.at(30, 20).addActor(new Zombie("Groan"));
+		gameMap.at(30,  18).addActor(new Zombie("Boo"));
+		gameMap.at(10,  4).addActor(new Zombie("Uuuurgh"));
+		gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
+		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
+		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));	
+		
+		//Create town map
+		List<String> map2 = Arrays.asList(
+				"................................................................................",
+				"................................................................................",
+				"................................................+............########...........",
+				"...............................................+++.........###......###.........",
+				"...............................................+++.......###..........##........",
+				"................................................+.......###............##.......",
+				"......................................................###..............##.......",
+				"....................................................###................##.......",
+				"..................................................###..................##.......",
+				"................................................###....................##.......",
+				"................................................#......................##.......",
+				"................................................#......................##.......",
+				"................................................................................",
+				"................................................................................",
+				"................................................#...............................",
+				"................................................#......................##.......",
+				".................................................###...................##.......",
+				"...................................................###.................##.......",
+				".....................................................###...............##.......",
+				"................................................+......###.............##.......",
+				"...............................................+++.......###...........##.......",
+				"...............................................+++.........###.........##.......",
+				"................................................+.............###......##.......",
+				"...............................................................########.........",
+				"................................................................................");
+		GameMap townMap = new GameMap(groundFactory, map2 );
+		world.addGameMap(townMap);
+		
+		//Add a vehicle to the original map
+		gameMap.at(43, 15).addItem(new Vehicle(townMap));
+		
+		//Populate town map with humans
+		String[] humans1 = {"Jose", "Bella", "Sara", "Priya", "Caitlin",
+				"Samuel", "Charles", "John", "Otis", "Hamzah"};
+		int x1, y1;
+		for (String name : humans1) {
+			do {
+				x1 = (int) Math.floor(Math.random() * 11.0 + 59.0);
+				y1 = (int) Math.floor(Math.random() * 15.0 + 5.0);
+			} 
+			while (townMap.at(x1, y1).containsAnActor());
+			townMap.at(x1,  y1).addActor(new Human(name));	
+		}
+		
+		//Populate town map with farmers
 		
 		
-
+		//Populate town map with zombies
+		townMap.at(30, 20).addActor(new Zombie("Groan"));
+		townMap.at(30,  18).addActor(new Zombie("Boo"));
+		townMap.at(10,  4).addActor(new Zombie("Uuuurgh"));
+		townMap.at(10, 18).addActor(new Zombie("Mortalis"));
+		townMap.at(1, 10).addActor(new Zombie("Gaaaah"));
+		townMap.at(12, 12).addActor(new Zombie("Aaargh"));	
+		
+		//Populate town map with weapons
+		townMap.at(2, 5).addItem(new Plank());
+		townMap.at(51, 3).addItem(new Shotgun());
+		townMap.at(51, 20).addItem(new SniperRifle());
+		
+		//Testing weapons
+		townMap.at(1, 2).addItem(new Shotgun());
+		townMap.at(2, 1).addItem(new SniperRifle());
+		
 		world.run();
 		
 
