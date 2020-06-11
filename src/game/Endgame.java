@@ -26,10 +26,10 @@ public class Endgame extends World {
 		for (Actor actor : actorLocations) {
 			lastActionMap.put(actor, new DoNothingAction());
 		}
-		GameMap playersMap = actorLocations.locationOf(player).map();
+		GameMap map = actorLocations.locationOf(player).map();
 		// This loop is basically the whole game
-		while (stillRunning() && !(checkHuman(playersMap,display)) && !(checkZombies(playersMap,display))) {
-			
+		while (stillRunning() && !(checkHuman(map,display)) && !((checkZombies(map,display)))) {
+			GameMap playersMap = actorLocations.locationOf(player).map();
 			playersMap.draw(display);
 
 			// Process all the actors.
@@ -42,14 +42,17 @@ public class Endgame extends World {
 			for (GameMap gameMap : gameMaps) {
 				gameMap.tick();
 			}
+			if (checkHuman(map,display)){
+				display.println("Player lost, Humans extinct");
+			}
+			if (checkZombies(map,display)){
+				display.println("Player won, Zombies and Mambo Marie extinct");
+			}
+
 
 		}
-		if(checkHuman(playersMap,display)) {
-			display.println("Humans are extinct, Player lost");
-		}
-		if(checkZombies(playersMap,display)) {
-			display.println("Zombies and Mambo Marie are extinct, Player won");
-		}
+
+
 		display.println(endGameMessage());
 	}
 	/**
