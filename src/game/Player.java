@@ -73,16 +73,15 @@ public class Player extends Human {
 	 * @return MarioCheck if MamboMambie exists or not, returns true if it does not else false
 	 */
 	private boolean checkMamboMarie(GameMap map, Display display) {
-		boolean MarioCheck = true;
+		
 		for(int i = 0;i < map.getXRange().max() ;i++) {
 			for(int j = 0;j < map.getYRange().max() ;j++) {
 				if (map.at(i,j).getActor() instanceof MamboMarie){
-					MarioCheck = false;
-					break;
+					return false;
 					}
 				}
 		}
-		return MarioCheck;
+		return true;
 	}
 	/**
 	 * Returns possible locations at which Mambo Marie can be placed. 

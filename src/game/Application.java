@@ -3,12 +3,11 @@ package game;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.World;
 
 
 /**
@@ -18,7 +17,7 @@ import edu.monash.fit2099.engine.GameMap;
 public class Application {
 
 	public static void main(String[] args) {
-		Endgame world = new Endgame(new Display());
+		World world = new Endgame(new Display());
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Fence(), new Tree());
 		
 		List<String> map = Arrays.asList(
@@ -147,7 +146,7 @@ public class Application {
 				fy1 = (int) Math.floor(Math.random() * 7.0 + 5.0);
 			} 
 			while (gameMap.at(fx1, fy1).containsAnActor());
-			farmers.add(new Farmer(name));
+			farmers1.add(new Farmer(name));
 			gameMap.at(fx1,  fy1).addActor(new Farmer(name));	
 		}
 		//Populate town map with zombies
