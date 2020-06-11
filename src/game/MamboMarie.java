@@ -12,7 +12,7 @@ public class MamboMarie extends ZombieActor {
 
 	public MamboMarie() {
 		
-		super("MamboMarie", 'M', 100, ZombieCapability.ALIVE);
+		super("MamboMarie", 'M', 100, ZombieCapability.UNDEAD);
 		// TODO Auto-generated constructor stub
 	}
 	private WanderBehaviour behaviours = new WanderBehaviour();
