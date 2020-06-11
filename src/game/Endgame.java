@@ -91,5 +91,20 @@ public class Endgame extends World {
 		}
 		return zombieCheck;
 	}
+	
+	private boolean checkMamboMarie() {
+		boolean MamboMarieCheck = true;
+		for (GameMap map: gameMaps) {
+			for(int i = 0;i < map.getXRange().max() ;i++) {
+				for(int j = 0;j < map.getYRange().max() ;j++) {
+					if (map.at(i,j).getActor().hasCapability(ZombieCapability.WITCH)){
+						MamboMarieCheck = false;
+						break;
+					}
+				}
+			}
+		}
+		return MamboMarieCheck;
+	}
 
 }

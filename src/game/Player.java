@@ -126,7 +126,7 @@ public class Player extends Human {
 	 */
 	void placeMamboMarie(GameMap map,Display display) {
 		int randomNumber = new Random().nextInt(100);
-		MamboMarie Mambo = new MamboMarie();
+		MamboMarie Mambo = new MamboMarie(map);
 		if(randomNumber >= 0 && randomNumber <= 5) {
 			Location mmLocation = validLocation(map);
 			if(checkMamboMarie(map, display) && Mambo.isConscious()) {

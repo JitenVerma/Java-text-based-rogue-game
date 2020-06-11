@@ -168,6 +168,13 @@ public class Application {
 		townMap.at(1, 2).addItem(new Shotgun());
 		townMap.at(2, 1).addItem(new SniperRifle(40));
 		
+		
+		//Third map for mambo marie
+		List<String> map3 = Arrays.asList(".");
+		GameMap mamboMap = new GameMap(groundFactory, map3);
+		world.addGameMap(mamboMap);
+		mamboMap.at(0,0).addActor(new MamboMarie(mamboMap));
+		
 		world.run();
 	}
 }
