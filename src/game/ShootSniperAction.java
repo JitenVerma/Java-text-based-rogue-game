@@ -35,6 +35,10 @@ public class ShootSniperAction extends Action{
 		}
 		AttackAction attackAction = new AttackAction(this.target, sniperRifle);
 		attackAction.execute(actor, map);
+		
+		//Reset aim
+		player.setTimeSpentAiming(0);
+		
 		return menuDescription(actor);
 	}
 

@@ -20,6 +20,7 @@ public class Player extends Human {
 
 	private Menu menu = new Menu();
 	private int ammunition;
+	private int timeSpentAiming;
 	
 	//private consumeHarvestedBehaviour behaviour = new consumeHarvestedBehaviour();
 	
@@ -33,6 +34,7 @@ public class Player extends Human {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.ammunition = 0;
+		this.timeSpentAiming = 0;
 	}
 
 	@Override
@@ -53,7 +55,13 @@ public class Player extends Human {
 			}
 			if (item instanceof SniperRifle) {
 				if(getAmmunition() != 0) {
-					actions.add(new UseSniperRifleAction(this, map, display, 0));
+					if(lastAction instanceof UseSniperRifleAction) {
+						actions.add(lastAction);
+					}
+					else {
+						setTimeSpentAiming(0);
+						actions.add(new UseSniperRifleAction(this, map, display, this.timeSpentAiming));
+					}
 				}
 			}
 			if (item instanceof HarvestedCrop) {
@@ -135,6 +143,14 @@ public class Player extends Human {
 	
 	public void setAmmunition(int newAmmunition) {
 		this.ammunition = newAmmunition;
+	}
+	
+	public int getTimeSpentAiming() {
+		return this.timeSpentAiming;
+	}
+	
+	public void setTimeSpentAiming(int newTimeSpentAiming) {
+		this.timeSpentAiming = newTimeSpentAiming;
 	}
 	
 }

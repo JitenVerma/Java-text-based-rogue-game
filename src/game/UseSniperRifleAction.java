@@ -32,13 +32,23 @@ public class UseSniperRifleAction extends Action{
 		//Provide options to aim or shoot
 		ArrayList<Action> actions = new ArrayList<Action>();
 		actions.add(new ShootSniperAction(this.target, this.timeSpentAiming));
+			//Player can only aim up to 2 times
 		if (this.timeSpentAiming < 2) {
-			
+			actions.add(new AimSniperRifleAction(this.target, this.timeSpentAiming));
 		}
 		Actions actions1 = new Actions();
 		actions1.add(actions);
 		Action selection = subMenu.showMenu(actor, actions1, display);
+			//Increment timeSpentAiming or reset it
+		if(selection instanceof AimSniperRifleAction) {
+			this.timeSpentAiming += 1;
+		}
+		else if (selection instanceof ShootSniperAction) {
+			this.timeSpentAiming = 0;
+		}
+		
 		String message = selection.execute(actor, map);
+		
 		return message;
 	}
 
