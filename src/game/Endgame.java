@@ -26,9 +26,9 @@ public class Endgame extends World {
 		for (Actor actor : actorLocations) {
 			lastActionMap.put(actor, new DoNothingAction());
 		}
-		GameMap map = actorLocations.locationOf(player).map();
+		GameMap compound = gameMaps.get(0);
 		// This loop is basically the whole game
-		while (stillRunning() && !(checkHuman(map,display)) && !((checkZombies(map,display)))) {
+		while (stillRunning() && !(checkHuman(compound,display)) && !((checkZombies(compound,display)))) {
 			GameMap playersMap = actorLocations.locationOf(player).map();
 			playersMap.draw(display);
 
@@ -42,10 +42,11 @@ public class Endgame extends World {
 			for (GameMap gameMap : gameMaps) {
 				gameMap.tick();
 			}
-			if (checkHuman(map,display)){
+			
+			if (checkHuman(compound,display)){
 				display.println("Player lost, Humans extinct");
 			}
-			if (checkZombies(map,display)){
+			if (checkZombies(compound,display)){
 				display.println("Player won, Zombies and Mambo Marie extinct");
 			}
 
