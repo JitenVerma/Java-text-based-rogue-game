@@ -31,20 +31,17 @@ public class ShootSniperAction extends Action{
 		}
 		else if(this.timeSpentAiming == 2) {
 			sniperRifle = new SniperRifle(200);
-		
 		}
 		AttackAction attackAction = new AttackAction(this.target, sniperRifle);
 		attackAction.execute(actor, map);
 		
 		//Reset aim
 		player.setTimeSpentAiming(0);
-		
 		return menuDescription(actor);
 	}
 
 	@Override
 	public String menuDescription(Actor actor) {
-		
 		return actor + " shoots " + this.target + " with sniper rifle";
 	}
 

@@ -33,6 +33,10 @@ public class FireShotgunAction extends Action{
 		actions1.add(actions);
 		Action shotDirection = subMenu.showMenu(actor, actions1, display);
 		
+		//Decrement ammo from player
+		Player player = (Player)actor;
+		player.setAmmunition(player.getAmmunition() - 1);
+		
 		return shotDirection.execute(actor, map);
 	}
 

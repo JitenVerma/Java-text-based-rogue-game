@@ -120,7 +120,10 @@ public class Application {
 		world.addGameMap(townMap);
 		
 		//Add a vehicle to the original map
-		gameMap.at(43, 15).addItem(new Vehicle(townMap));
+		gameMap.at(43, 15).addItem(new Vehicle(townMap, "to town"));
+		
+		//Add a vehicle to townmap to travel back to the compound
+		townMap.at(0, 0).addItem(new Vehicle(gameMap, "to compound"));
 		
 		//Populate town map with humans
 		String[] humans1 = {"Jose", "Bella", "Sara", "Priya", "Caitlin",

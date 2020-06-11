@@ -6,9 +6,9 @@ import edu.monash.fit2099.engine.MoveActorAction;
 
 public class Vehicle extends Item{
 
-	public Vehicle(GameMap townMap) {
+	public Vehicle(GameMap map, String direction) {
 		super("Vehicle", 'V', false);
 		// TODO Auto-generated constructor stub
-		this.allowableActions.add(new MoveActorAction(townMap.at(1,1), "to town"));
+		this.allowableActions.add(new MoveActorAction(map.at(1,1), direction));
 	}
 }
