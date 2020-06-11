@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.World;
 
 
 /**
@@ -18,7 +19,7 @@ import edu.monash.fit2099.engine.GameMap;
 public class Application {
 
 	public static void main(String[] args) {
-		Endgame world = new Endgame(new Display());
+		World world = new World(new Display());
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Fence(), new Tree());
 		
 		List<String> map = Arrays.asList(
@@ -161,11 +162,12 @@ public class Application {
 		//Populate town map with weapons
 		townMap.at(2, 5).addItem(new Plank());
 		townMap.at(51, 3).addItem(new Shotgun());
-		townMap.at(51, 20).addItem(new SniperRifle());
+		townMap.at(51, 20).addItem(new SniperRifle(40));
+		townMap.at(1, 3).addItem(new Ammunition());
 		
 		//Testing weapons
 		townMap.at(1, 2).addItem(new Shotgun());
-		townMap.at(2, 1).addItem(new SniperRifle());
+		townMap.at(2, 1).addItem(new SniperRifle(40));
 		
 		world.run();
 	}

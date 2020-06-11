@@ -19,6 +19,8 @@ import edu.monash.fit2099.engine.Menu;
 public class Player extends Human {
 
 	private Menu menu = new Menu();
+	private int ammunition;
+	
 	//private consumeHarvestedBehaviour behaviour = new consumeHarvestedBehaviour();
 	
 	/**
@@ -30,6 +32,7 @@ public class Player extends Human {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
+		this.ammunition = 0;
 	}
 
 	@Override
@@ -44,7 +47,14 @@ public class Player extends Human {
 				actions.add(new CraftZombieMaceAction());
 			}
 			if (item instanceof Shotgun) {
-				actions.add(new FireShotgunAction(this, map, display));
+				if(getAmmunition() != 0) {
+					actions.add(new FireShotgunAction(this, map, display));
+				}
+			}
+			if (item instanceof SniperRifle) {
+				if(getAmmunition() != 0) {
+					actions.add(new UseSniperRifleAction(this, map, display, 0));
+				}
 			}
 			if (item instanceof HarvestedCrop) {
 				HarvestedCrop harvestedCrop = (HarvestedCrop)item;
@@ -117,6 +127,14 @@ public class Player extends Human {
 			}
 			
 		}
+	}
+	
+	public int getAmmunition() {
+		return this.ammunition;
+	}
+	
+	public void setAmmunition(int newAmmunition) {
+		this.ammunition = newAmmunition;
 	}
 	
 }

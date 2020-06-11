@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import edu.monash.fit2099.engine.WeaponItem;
 
 /**
  * Special Action for attacking other Actors.
@@ -20,11 +21,18 @@ public class AttackAction extends Action {
 	 * The Actor that is to be attacked
 	 */
 	protected Actor target;
+	
+	protected WeaponItem rangedWeapon;
 	/**
 	 * Random number generator
 	 */
 	protected Random rand = new Random();
-
+	
+	public AttackAction(Actor target, WeaponItem rangedWeapon) {
+		this.target = target;
+		this.rangedWeapon = rangedWeapon;
+	}
+	
 	/**
 	 * Constructor.
 	 * 
@@ -36,8 +44,14 @@ public class AttackAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-	
-		Weapon weapon = actor.getWeapon();
+		Weapon weapon;
+		if (this.rangedWeapon == null) {
+			weapon = actor.getWeapon();
+		}
+		else {
+			weapon = this.rangedWeapon;
+		}
+		
 		String result = "";
 		
 		//If the weapon is bite, then it's accuracy is 40%
