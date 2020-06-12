@@ -162,13 +162,13 @@ public class Application {
 		
 		//Populate town map with weapons
 		townMap.at(2, 5).addItem(new Plank());
-		townMap.at(51, 3).addItem(new Shotgun());
+		townMap.at(51, 3).addItem(new Shotgun(20));
 		townMap.at(51, 20).addItem(new SniperRifle(40));
 		townMap.at(1, 3).addItem(new Ammunition());
 		townMap.at(3, 1).addItem(new Ammunition());
 		
 		//Testing weapons
-		townMap.at(1, 2).addItem(new Shotgun());
+		townMap.at(1, 2).addItem(new Shotgun(20));
 		townMap.at(2, 1).addItem(new SniperRifle(40));
 		
 		world.run();

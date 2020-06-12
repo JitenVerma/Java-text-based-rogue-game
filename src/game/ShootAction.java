@@ -240,7 +240,7 @@ public class ShootAction extends Action{
 			Location checkLocation = new Location(map, x, y);
 			if (map.isAnActorAt(checkLocation)) {
 				if (map.getActorAt(checkLocation).hasCapability(ZombieCapability.UNDEAD)) {
-					return new AttackAction(map.getActorAt(checkLocation));
+					return new AttackAction(map.getActorAt(checkLocation), new Shotgun(30));
 				}
 			}
 		}

@@ -33,7 +33,7 @@ public class ShootSniperAction extends Action{
 			sniperRifle = new SniperRifle(200);
 		}
 		AttackAction attackAction = new AttackAction(this.target, sniperRifle);
-		attackAction.execute(actor, map);
+		System.out.println(attackAction.execute(actor, map));
 		
 		//Reset aim
 		player.setTimeSpentAiming(0);

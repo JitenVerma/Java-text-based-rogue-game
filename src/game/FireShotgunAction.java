@@ -45,5 +45,4 @@ public class FireShotgunAction extends Action{
 		// TODO Auto-generated method stub
 		return actor + " shoot shotgun";
 	}
-
 }

@@ -69,6 +69,9 @@ public class AttackAction extends Action {
 				return actor + " misses " + target + ".";
 			}
 		}
+		else if (weapon instanceof SniperRifle) {
+			//100% chance of hitting with sniper rifle
+		}
 		else if (rand.nextBoolean()) {
 			return actor + " misses " + target + ".";
 		}
