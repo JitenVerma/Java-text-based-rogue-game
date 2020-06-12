@@ -39,7 +39,6 @@ public class Player extends Human {
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		placeMamboMarie(map,display);
 		List<Item> myInventory = this.getInventory();
 		for (Item item: myInventory) {
 			if (item instanceof ZombieArm) {
@@ -84,57 +83,9 @@ public class Player extends Human {
 		return menu.showMenu(this, actions, display);
 		
 	}
-	/**
-	 * Checks if there is Mambo Marie in map.If there is it returns true if it doesnt exist else returns false. 
-	 * @param map        the map containing the Actor
-	 * @param display    the I/O object to which messages may be written
-	 * @return MarioCheck if MamboMambie exists or not, returns true if it does not else false
-	 */
-	private boolean checkMamboMarie(GameMap map, Display display) {
-		
-		for(int i = 0;i < map.getXRange().max() ;i++) {
-			for(int j = 0;j < map.getYRange().max() ;j++) {
-				if (map.at(i,j).getActor() instanceof MamboMarie){
-					return false;
-					}
-				}
-		}
-		return true;
-	}
-	/**
-	 * Returns possible locations at which Mambo Marie can be placed. 
-	 * @param map        the map containing the Actor
-	 * @return a random edge possible location in which Mambo Marie can be placed
-	 */
-	private Location validLocation(GameMap map){
-		ArrayList<Location> validLocations = new ArrayList<>();
-		for(int i = 0;i < map.getXRange().max() ;i++) {
-			for(int j = 0;j < map.getYRange().max() ;j++) {
-				if(i == 0 || i == map.getXRange().max() - 1 || j == 0 || j == map.getYRange().max() - 1) {
-					Location newLocation = map.at(i,j);
-					validLocations.add(newLocation);
-				}
-			}
-		}
-		int randInt2 = new Random().nextInt(validLocations.size() - 1);
-		return validLocations.get(randInt2);
-	}
-	/**
-	 * Places Mambo Marie on map if ramdom integer from 0 to 5 generated and no other conscious Mambo Marie instance exists on map. 
-	 * @param map        the map containing the Actor
-	 * @param display    the I/O object to which messages may be written
-	 */
-	void placeMamboMarie(GameMap map,Display display) {
-		int randomNumber = new Random().nextInt(100);
-		MamboMarie Mambo = new MamboMarie();
-		if(randomNumber >= 0 && randomNumber <= 5) {
-			Location mmLocation = validLocation(map);
-			if(checkMamboMarie(map, display) && Mambo.isConscious()) {
-				mmLocation.addActor(Mambo);
-			}
-			
-		}
-	}
+
+
+
 	
 	public int getAmmunition() {
 		return this.ammunition;
