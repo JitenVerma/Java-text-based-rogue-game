@@ -41,7 +41,7 @@ public class UseSniperRifleAction extends Action{
 		Action selection = subMenu.showMenu(actor, actions1, display);
 			//Increment timeSpentAiming or reset it
 		if(selection instanceof AimSniperRifleAction) {
-			this.timeSpentAiming += 1;
+			incrementTimeSpentAiming();
 		}
 		else if (selection instanceof ShootSniperAction) {
 			this.timeSpentAiming = 0;

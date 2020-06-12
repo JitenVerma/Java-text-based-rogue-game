@@ -103,6 +103,12 @@ public class Player extends Human {
 		this.timeSpentAiming = newTimeSpentAiming;
 	}
 	
+	@Override
+	public void hurt(int points) {
+		hitPoints -= points;
+		this.timeSpentAiming = 0;
+	}
+	
 }
 
 		
