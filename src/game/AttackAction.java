@@ -21,13 +21,21 @@ public class AttackAction extends Action {
 	 * The Actor that is to be attacked
 	 */
 	protected Actor target;
-	
+	/**
+	 * A rnaged weapon for the actor to use
+	 */
 	protected WeaponItem rangedWeapon;
 	/**
 	 * Random number generator
 	 */
 	protected Random rand = new Random();
 	
+	/**
+	 * Constructor 
+	 * 
+	 * @param target the Actor to attack
+	 * @param rangedWeapon A ranged weapon to be used by the Actor who is attacking
+	 */
 	public AttackAction(Actor target, WeaponItem rangedWeapon) {
 		this.target = target;
 		this.rangedWeapon = rangedWeapon;
@@ -44,6 +52,7 @@ public class AttackAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		//If a ranged weapon has been given then select that
 		Weapon weapon;
 		if (this.rangedWeapon == null) {
 			weapon = actor.getWeapon();

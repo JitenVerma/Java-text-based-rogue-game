@@ -11,10 +11,27 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Menu;
 import edu.monash.fit2099.engine.NumberRange;
 
+/**
+ * This action allows the player to use their sniper rifle. 
+ * Allows them to select an enemy to focus on, and select whether to aim or shoot
+ * 
+ */
 public class UseSniperRifleAction extends Action{
+	/**
+	 * The number of turns Player has spent aiming
+	 */
 	private int timeSpentAiming;
+	/**
+	 * The menu to allow Player to choose between the options
+	 */
 	private Menu subMenu = new Menu();
+	/**
+	 * The display to allow us to present messages for the Player
+	 */
 	private Display display;
+	/**
+	 * The actor to be attacked
+	 */
 	private Actor target;
 	
 	public UseSniperRifleAction(Actor actor, GameMap map, Display display, int timeSpentAiming) {
@@ -57,6 +74,14 @@ public class UseSniperRifleAction extends Action{
 		return actor + " uses sniper rifle";
 	}
 	
+	/**
+	 * Determines all possible targets on the given map and presents a submenu to the Player
+	 * to select an enemy
+	 * 
+	 * @param actor The Player who is attacking
+	 * @param map The map which the player is on
+	 * @return The action of SelectedTarget which the Player selects
+	 */
 	public Actor selectAim(Actor actor, GameMap map) {
 		NumberRange xRange = map.getXRange();
 		NumberRange yRange = map.getXRange();
@@ -82,10 +107,16 @@ public class UseSniperRifleAction extends Action{
 		return selectedTargetAction.getTarget();
 	}
 	
+	/**
+	 * A getter for timeSpentAiming
+	 * @return an integer value of timeSpentAiming
+	 */
 	public int getTimeSpentAiming() {
 		return this.timeSpentAiming;
 	}
-	
+	/**
+	 * To increment the timeSpentAiming attribute
+	 */
 	public void incrementTimeSpentAiming() {
 		this.timeSpentAiming += 1;
 	}

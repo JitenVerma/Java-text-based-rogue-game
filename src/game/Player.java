@@ -84,21 +84,32 @@ public class Player extends Human {
 		
 	}
 
-
-
-	
+	/**
+	 * A getter for ammunition
+	 * @return integer value of remaining ammunition
+	 */
 	public int getAmmunition() {
 		return this.ammunition;
 	}
-	
+	/**
+	 * a setter for ammunition 
+	 * @param newAmmunition the new amount of ammunition
+	 */
 	public void setAmmunition(int newAmmunition) {
 		this.ammunition = newAmmunition;
 	}
-	
+	/**
+	 * A getter for timeSpentAiming
+	 * @return integer value of the amount of turns spent aiming
+	 */
 	public int getTimeSpentAiming() {
 		return this.timeSpentAiming;
 	}
 	
+	/**
+	 * A setter for timeSpentAiming
+	 * @param newTimeSpentAiming the new value of timeSpentAiming
+	 */
 	public void setTimeSpentAiming(int newTimeSpentAiming) {
 		this.timeSpentAiming = newTimeSpentAiming;
 	}

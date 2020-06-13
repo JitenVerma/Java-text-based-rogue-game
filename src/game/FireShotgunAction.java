@@ -13,9 +13,22 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Menu;
 
 public class FireShotgunAction extends Action{
+	/**
+	 * Submenu to allow player input for direction to fire
+	 */
 	private Menu subMenu = new Menu();
+	/**
+	 * the I/O object to which messages may be written
+	 */
 	private Display display;
 	
+	/**
+	 * Constructor 
+	 * 
+	 * @param actor the Actor firing the shotgun
+	 * @param map the map the shotgun is being fired on
+	 * @param display the I/O object to which messages may be written
+	 */
 	public FireShotgunAction(Actor actor, GameMap map, Display display) {
 		this.display = display;
 	}
