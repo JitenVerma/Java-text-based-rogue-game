@@ -120,10 +120,10 @@ public class Application {
 		world.addGameMap(townMap);
 		
 		//Add a vehicle to the original map
-		gameMap.at(43, 15).addItem(new Vehicle(townMap, "to town"));
+		gameMap.at(43, 22).addItem(new Vehicle(townMap, "to town"));
 		
 		//Add a vehicle to townmap to travel back to the compound
-		townMap.at(0, 0).addItem(new Vehicle(gameMap, "to compound"));
+		townMap.at(30, 11).addItem(new Vehicle(gameMap, "to compound"));
 		
 		//Populate town map with humans
 		String[] humans1 = {"Jose", "Bella", "Sara", "Priya", "Caitlin",
@@ -164,12 +164,13 @@ public class Application {
 		townMap.at(2, 5).addItem(new Plank());
 		townMap.at(51, 3).addItem(new Shotgun(20));
 		townMap.at(51, 20).addItem(new SniperRifle(40));
-		townMap.at(1, 3).addItem(new Ammunition());
-		townMap.at(3, 1).addItem(new Ammunition());
-		
-		//Testing weapons
+		townMap.at(52, 3).addItem(new Ammunition());
+		townMap.at(52, 20).addItem(new Ammunition());
 		townMap.at(1, 2).addItem(new Shotgun(20));
 		townMap.at(2, 1).addItem(new SniperRifle(40));
+		townMap.at(1, 3).addItem(new Ammunition());
+		townMap.at(3, 1).addItem(new Ammunition());
+		townMap.at(20, 5).addItem(new Ammunition());
 		
 		world.run();
 	}
