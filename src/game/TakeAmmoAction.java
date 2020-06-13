@@ -26,10 +26,13 @@ public class TakeAmmoAction extends Action{
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		// TODO Auto-generated method stub
-		Player player = (Player)actor;
-		player.setAmmunition(player.getAmmunition() + 15);
-		map.locationOf(actor).removeItem(this.ammunition);
-		return menuDescription(player);
+		if (actor instanceof Player) {
+			Player player = (Player)actor;
+			player.setAmmunition(player.getAmmunition() + 15);
+			map.locationOf(actor).removeItem(this.ammunition);
+			return menuDescription(player);
+		}
+		return "cannot pick up ammo";
 	}
 
 	@Override

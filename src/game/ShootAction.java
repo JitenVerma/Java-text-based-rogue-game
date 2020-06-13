@@ -11,29 +11,17 @@ import edu.monash.fit2099.engine.NumberRange;
 
 public class ShootAction extends Action{
 	/**
-	 * 
-	 */
-	protected Location shootLocation;
-	/**
 	 * The direction to fire the shotgun in
 	 */
-	protected String direction;
-	/**
-	 * Key to use in submenu to determine the direction of fire
-	 */
-	protected String hotKey;
+	private String direction;
 	
 	/**
-	 * Constructor 
+	 * Constructor
 	 * 
-	 * @param moveToLocation
 	 * @param direction the direction to fire the shotgun in
-	 * @param hotKey the key used in submenu to determine the direction of fire
 	 */
-	public ShootAction(Location moveToLocation, String direction, String hotKey) {
-		this.shootLocation = shootLocation;
+	public ShootAction(String direction) {
 		this.direction = direction;
-		this.hotKey = hotKey;
 	}
 	
 	@Override

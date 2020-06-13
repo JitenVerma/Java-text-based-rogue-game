@@ -40,7 +40,7 @@ public class FireShotgunAction extends Action{
 		Location location = map.locationOf(actor);
 		List<Exit> exits =  location.getExits();
 		for (Exit exit: exits) {
-			actions.add(new ShootAction(exit.getDestination(), exit.getName(), exit.getHotKey()));
+			actions.add(new ShootAction(exit.getName()));
 		}
 		Actions actions1 = new Actions();
 		actions1.add(actions);
