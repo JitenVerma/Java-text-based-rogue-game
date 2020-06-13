@@ -139,7 +139,6 @@ public class Application {
 		}
 		
 		//Populate town map with farmers
-		
 		String[] farmernames1 = {"Fred","Fed","Mays","Mayson"};
 		ArrayList<Farmer> farmers1 = new ArrayList<Farmer>();
 		int fx1, fy1;
@@ -152,7 +151,7 @@ public class Application {
 			farmers1.add(new Farmer(name));
 			gameMap.at(fx1,  fy1).addActor(new Farmer(name));	
 		}
-		//Populate town map with zombies
+		//Populate town map with zombies 
 		townMap.at(30, 20).addActor(new Zombie("Groan"));
 		townMap.at(30,  18).addActor(new Zombie("Boo"));
 		townMap.at(10,  4).addActor(new Zombie("Uuuurgh"));
